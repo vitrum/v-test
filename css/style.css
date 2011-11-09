@@ -1,0 +1,47 @@
+    body {
+      margin-top: 1.0em;
+      background-color: #222;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #ffffff;
+      width:100%;
+      min-width:320px; max-width:480px;
+      font-size:12px;
+    }
+  
+    .btn { 
+      float:left;
+      background:-webkit-gradient(linear,left top,left bottom,from(#959595),to(#efefef));
+      background:-moz-linear-gradient(center bottom,#959595,#efefef);
+      border-radius: 10px 10px 10px 10px;
+      line-height: 15px;
+      height: 40px;
+      margin: 4px 0 0 4px;
+      padding: 6px;
+      text-align: center;
+      width: 90%;
+    }
+    .btn_red {
+      background:-webkit-gradient(linear,left top,left bottom,from(#ff9595),to(#ffefef));
+      background:-moz-linear-gradient(center bottom,#ff9595,#ffefef);
+    }
+    .btn_small {
+      width:100px;
+    }
+    .log {
+      width:90%;
+      height:200px;
+      overflow: auto;
+      font-size:10px;
+    }
+    .baidumap {
+      width:90%;
+      height:300px;
+    }
+    .title {
+      float:left;
+      clear:both;
+    }
+	.error {color: red;}  
+    .success {color: green;}  
+    #console_wrapper {background-color: black; color:white;padding:5px;}  
+    #console p {padding:0;margin:0;} 
