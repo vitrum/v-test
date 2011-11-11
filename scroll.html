@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" media="all" href="css/style.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>  
+	<script src="http://lea.verou.me/prefixfree/prefixfree.min.js" type="text/javascript"></script>  
+	<title>vitrum/v-test @ GitHub page scrool</title>
+	<script Language="JavaScript"> 
+	<!-- 
+	$(document).ready(function(){ 
+
+			var strURL='http://vitrum.test.cn/v-test/master/test2.xml'; 
+			$.ajax({ 
+			  type:'GET', 
+			  dataType:'xml', 
+			  url:strURL, 
+			  success:function(xml){ 
+				var myTitle; 
+				var myLink; 
+				$('item',xml).each(function(e){ 
+					myTitle=$('title',this).text(); 
+					myLink=$('link',this).text(); 
+					myImg=$('img',this).text();
+					var printTxt = "<a class='rss' href='"+ myLink +"'><image src='"+ myImg +"'/><span>" + myTitle +"</span></a>";
+					//$('<a/>').attr('href',myLink).attr('target','_blank').text(myTitle).appendTo($('#div1')); 
+					//$('<br/>').appendTo($('#div1'));
+					$('#items').append(printTxt);
+				}); 
+				//alert($('#div1').html()); 
+			  } 
+			}) 
+
+	}) 
+
+	//--> 
+	</script> 
+</head>
+
+<body style="">
+
+	<div id="allbox">
+
+		<div id="items"></div>
+
+		<div id="nav">
+			<div class="barbox">
+				<div class="drop">DROP</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
