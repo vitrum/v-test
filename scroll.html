@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<link rel="stylesheet" media="all" href="css/style.css" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>  
+	<script type="text/javascript" src="http://lea.verou.me/prefixfree/prefixfree.min.js"></script>  
+	<script type="text/javascript" src="js/jquery-dotimeout.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
+
+	<title>vitrum/v-test @ GitHub page scrool</title>
+	<script Language="JavaScript"> 
+	<!--
+		DEBUG = true;
+ 
+        // by default, set mylogger to do nothing
+        mylogger = {};
+        mylogger.log = function(msg) {
+            return false;
+        };
+ 
+        // if DEBUG is true and Firebug console is available, use it for logging
+        if (window.DEBUG && typeof(console) !== 'undefined') {
+            mylogger = console;
+		}
+
+	$(document).ready(function(){ 
+
+			
+
+			var strURL='http://vitrum.test.cn/v-test/master/test2.xml'; 
+			$.ajax({ 
+			  type:'GET', 
+			  dataType:'xml', 
+			  url:strURL, 
+			  success:function(xml){ 
+				var myTitle; 
+				var myLink; 
+				$('item',xml).each(function(e){ 
+					myTitle=$('title',this).text(); 
+					myLink=$('link',this).text(); 
+					myImg=$('img',this).text();
+					var printTxt = "<a class='rss' href='"+ myLink +"'><image src='"+ myImg +"'/><span>" + myTitle +"</span></a>";
+					//$('<a/>').attr('href',myLink).attr('target','_blank').text(myTitle).appendTo($('#div1')); 
+					//$('<br/>').appendTo($('#div1'));
+					$('#items').append(printTxt);
+					
+				}); 
+				//alert($('#div1').html()); 
+			  } 
+			}) 
+		
+		jQuery.fn.drag = function(){  
+			return this.each(function(){  
+				var draging = false;  
+				var startLeft,startTop;  
+				var startX,startY; 
+				var $drayThing = $('.drop');
+				var maxY = $(this).innerHeight() - $drayThing.innerHeight() ;
+
+				var $paneTarget = $('body');
+				  
+				$drayThing.css('cursor','move'); 
+				
+				$(this).bind({
+					  click: function(event) {
+						// do something on click
+					  },
+					  mousedown: function(event) {
+						// do something on mouseenter
+						var offset = $drayThing.offset();  
+						startLeft = offset.left;  
+						startTop = offset.top;  
+						startX = event.clientX;  
+						startY = event.clientY; 
+						
+						
+						draging = true; 
+
+						mylogger.log("mouseenter!!!!!!")
+					  },
+					  mousemove: function(event) {
+						if (draging == false)return;  
+						var deltaX = event.clientX - startX;  
+						var deltaY = event.clientY - startY;  
+						var left = startLeft + deltaX;  
+						var top = startTop + deltaY - 20;
+						if (top <= 1)
+						{
+							top = 1;
+						}
+						if (top >= maxY)
+						{
+							top = maxY;
+						}
+						mylogger.log("startY:" + startY + ",new :" + deltaY  + ",newtop :" + top );
+						$drayThing.css('top',top+'px');
+
+						$paneTarget.stop().scrollTo( {top:'-=100px', left:'+=100'}, 800 );
+						
+
+
+					  },
+					  mouseup: function(event) {
+						draging = false; 
+						mylogger.log("draging!!!false!!!")
+					  }
+				});
+
+				$drayThing.bind({
+					mouseenter: function(event) {
+
+						// do something on mouseenter
+						var offset = $drayThing.offset();  
+						startLeft = offset.left;  
+						startTop = offset.top;  
+						startX = event.clientX;  
+						startY = event.clientY; 
+						
+						mylogger.log("mouseenter!!!!!!")
+
+						draging = true; 
+
+					 }
+				});
+
+
+			});  
+			}  
+		
+			$('.barbox').drag();  
+
+
+	}) 
+
+	//--> 
+	</script> 
+</head>
+
+<body style="">
+
+	<div id="allbox">
+
+		<div id="items"></div>
+
+		<div id="nav">
+			<div class="barbox">
+				<div class="drop"></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

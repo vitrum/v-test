@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<link rel="stylesheet" media="all" href="css/style.css" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>  
+	<script type="text/javascript" src="js/prefixfree.min.js"></script>  
+	<script type="text/javascript" src="js/jquery-dotimeout.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
+
+	<title>vitrum/v-test @ GitHub page scrool</title>
+	<script Language="JavaScript"> 
+	<!--
+		DEBUG = true;
+ 
+        // by default, set mylogger to do nothing
+        mylogger = {};
+        mylogger.log = function(msg) {
+            return false;
+        };
+ 
+        // if DEBUG is true and Firebug console is available, use it for logging
+        if (window.DEBUG && typeof(console) !== 'undefined') {
+            mylogger = console;
+		}
+
+	$(document).ready(function(){ 
+		$body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');// For touchmove and scroll page Y. This will fix opera.
+			
+
+			var strURL='http://vitrum.test.cn/v-test/master/test2.xml'; 
+			$.ajax({ 
+			  type:'GET', 
+			  dataType:'xml', 
+			  url:strURL, 
+			  success:function(xml){ 
+				var myTitle; 
+				var myLink; 
+				var printTxt = "";
+				$('item',xml).each(function(e){ 
+					myTitle=$('title',this).text(); 
+					myLink=$('link',this).text(); 
+					myImg=$('img',this).text();
+					printTxt = printTxt + "<a class='rss' href='"+ myLink +"'><image src='"+ myImg +"'/><span>" + myTitle +"</span></a>";
+				}); 
+				$('#items .things').append(printTxt);
+				//alert($('#div1').html()); 
+			  } 
+			}) 
+		
+		jQuery.fn.drag = function(){  
+			return this.each(function(){  
+				var draging = false;  
+				var startLeft,startTop;  
+				var startX,startY; 
+				var $drayThing = $('.drop');
+				var maxY = $(this).innerHeight() - $drayThing.innerHeight() ;
+
+
+
+				var $paneTarget = $('body');
+				  
+				$drayThing.css('cursor','move'); 
+				
+				$(this).bind({
+					  click: function(event) {
+						// do something on click
+					  },
+					  mousedown: function(event) {
+						// do something on mouseenter
+						var offset = $drayThing.offset(); 
+						
+						maxY = $(this).innerHeight() - $drayThing.innerHeight() ;
+
+						startLeft = offset.left;  
+						startTop = offset.top;  
+						startX = event.clientX;  
+						startY = event.clientY; 
+						
+						
+						draging = true; 
+
+						mylogger.log("mouseenter!!!!!!")
+					  },
+					  mousemove: function(event) {
+
+						
+
+						//$paneTarget.stop().scrollTo( {top:'-=100px', left:'+=100'}, 800 );
+						//var oldScroll 	  = $body.scrollTop();
+						//var newYpoint 	  = oldScroll - (touch.pageY - firstTouchY) ;
+						//$body.stop().animate({ 'scrollTop': deltaY });
+
+						$.doTimeout( 1, function(){
+							if (draging == false)return;  
+							var deltaX = event.clientX - startX;  
+							var deltaY = event.clientY - startY;  
+							var left = startLeft + deltaX;  
+							var top = startTop + deltaY - 20;
+							top = event.clientY - 16;
+							if (top <= 1)
+							{
+								top = 1;
+							}
+							if (top >= maxY)
+							{
+								top = maxY;
+							}
+							mylogger.log("startY:" + startY + ",new :" + deltaY  + ",newtop :" + top );
+							$drayThing.css('top',top+'px');
+							//$drayThing.stop().animate({ 'top': top+'px' });
+							
+							
+
+		
+						
+						});
+
+
+					  },
+					  mouseleave: function(event) {
+						draging = false; 
+
+
+							var pageHeight    = $(document).height(),
+								 screenHeight = $(window).height(),
+								 barHeight    = $(".barbox").height(),
+								 barScale     = pageHeight / barHeight ; 
+							var firstTouchY   = startY;
+							var endTouchY     = event.clientY;
+							var eventStartY   = startTop;
+							
+							var eventEndY     = eventStartY + ((endTouchY - firstTouchY) * barScale) ;
+							eventEndY = (endTouchY * pageHeight ) / barHeight;
+							
+							mylogger.log("eventEndY!" + eventEndY  + ",endTouchY :" + endTouchY  + ",startY :" + startY  + ",barScale :" + barScale + ",pageHeight :" + pageHeight + ",screenHeight :" + screenHeight);
+							if (eventEndY  <0) {eventEndY =0}
+
+							$body.stop().animate({ 'scrollTop': eventEndY});
+							//$drayThing.stop().animate({ 'top': top+'px' });
+
+						mylogger.log("draging!!!false!!!")
+					  }
+				});
+
+				$drayThing.bind({
+					mouseenter: function(event) {
+
+						// do something on mouseenter
+						var offset = $drayThing.offset();  
+						startLeft = offset.left;  
+						startTop = offset.top;  
+						startX = event.clientX;  
+						startY = event.clientY; 
+						
+						mylogger.log("mouseenter!!!!!!");
+
+						draging = true; 
+
+					 }
+				});
+
+
+			});  
+			}  
+		
+			$('.barbox').drag();  
+
+
+
+	}) 
+
+
+function allPageHeight(){ 
+	if($.browser.msie){ 
+		return document.compatMode == "CSS1Compat"? document.documentElement.clientHeight : document.body.clientHeight; 
+	}else{ 
+		return self.innerHeight; 
+	} 
+}; 
+
+
+	//--> 
+	</script> 
+</head>
+
+<body style="">
+	<a id="relative-position-hash" href="#">Relative position(hash)</a>
+	<div id="allbox">
+		<div id="nav">
+			<div class="barbox">
+				<div class="drop"></div>
+			</div>
+		</div>
+		<div id="items">
+			<div class="things"></div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+</body>
+</html>
