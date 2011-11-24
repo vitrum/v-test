@@ -73,7 +73,10 @@
 					  },
 					  mousedown: function(event) {
 						// do something on mouseenter
-						var offset = $drayThing.offset();  
+						var offset = $drayThing.offset(); 
+						
+						maxY = $(this).innerHeight() - $drayThing.innerHeight() ;
+
 						startLeft = offset.left;  
 						startTop = offset.top;  
 						startX = event.clientX;  
@@ -93,7 +96,7 @@
 						//var newYpoint 	  = oldScroll - (touch.pageY - firstTouchY) ;
 						//$body.stop().animate({ 'scrollTop': deltaY });
 
-						$.doTimeout( 20, function(){
+						$.doTimeout( 1, function(){
 							if (draging == false)return;  
 							var deltaX = event.clientX - startX;  
 							var deltaY = event.clientY - startY;  
