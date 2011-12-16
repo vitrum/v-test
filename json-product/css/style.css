@@ -1,0 +1,528 @@
+
+
+/*
+  Copyright 2011 Glamour-Sales China Inc.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ 
+  Original: Vitrum.Zhu (vitrum.cn@gmail.com)
+*/
+
+/*   
+Theme Name: The HTML5 Reset Theme
+Theme URI: http://html5reset.org
+Description: A style-free theme to get you started on an HTML5-based Wordpress theme of your own.
+Author: Monkey Do!
+Author URI: http://monkeydo.biz
+Version: 1
+*/
+
+/*
+	HTML5 Reset Wordpress Theme :: style.css
+	----------------------------------------------------------
+	We have learned much from/been inspired by/taken code where offered from:
+	
+	Eric Meyer					:: http://ericmeyer.com
+	HTML5 Doctor				:: http://html5doctor.com
+	and the HTML5 Boilerplate	:: http://html5boilerplate.com
+	
+	Special thanks: The Wordpress theme owes its start to an empty theme authored 
+		by Chris Coyier & Jeff Starr: http://digwp.com
+	
+-------------------------------------------------------------------------------*/
+
+/* Let's default this puppy out
+-------------------------------------------------------------------------------*/
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}									
+
+article, aside, figure, footer, header, hgroup, nav, section {display: block;}
+
+/* Responsive images and other embedded objects
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites, like, say for Google Maps custom placemarkers. 
+   There has been a report of problems with standard Google maps as well, but we haven't been able to duplicate or diagnose the issue. */
+/*img,*/
+object,
+embed {max-width: 100%;}
+
+/* force a vertical scrollbar to prevent a jumpy page */
+html {overflow-y: scroll;}
+
+/* we use a lot of ULs that aren't bulleted. 
+	don't forget to restore the bullets within content. */
+ul,ol {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+/* tables still need cellspacing="0" in the markup */
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom; *vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+table {font-size: inherit; font: 100%;}
+ 
+/* Accessible focus treatment
+	people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {outline: none;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+td, td img {vertical-align: top;} 
+
+/* Make sure sup and sub don't screw with your line-heights
+	gist.github.com/413930 */
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+/* hand cursor on clickable elements */
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+button {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover */
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+
+/* let's clear some floats */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }  
+
+
+
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
+
+/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
+body {font: 13px Helmet, Freesans, sans-serif;}
+
+/* using local fonts? make sure to read up on Paul Irish's 
+	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
+
+/* we like off-black for text */
+body, select, input, textarea {color: #333;}
+
+a {color: #03f;}
+a:hover {color: #69f;}
+
+/* Custom text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) */
+::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+
+/*	j.mp/webkit-tap-highlight-color */
+a:link {-webkit-tap-highlight-color: #fcd700;} 
+
+ins {background-color: #fcd700; color: #000; text-decoration: none;}
+mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
+
+
+
+/* And here begins the Wordpress fun.
+-------------------------------------------------------------------------------*/
+
+#page-wrap {width: 960px; margin: 20px auto;}
+
+.post {}
+
+.entry-content {}
+.entry-content a {}
+.entry-content a:hover {}
+
+#meta {}
+.postmetadata {}
+
+#sidebar {}
+
+.navgation {}
+.next-posts {}
+.prev-posts {}
+
+#searchform {}
+#s {}
+#searchsubmt {}
+	
+ol.commentlist {list-style: none;}
+ol.commentlist li {}
+ol.commentlist li.alt {}
+ol.commentlist li.bypostauthor {}
+ol.commentlist li.byuser {}
+ol.commentlist li.comment-author-admin {}
+ol.commentlist li.comment {border-bottom: 1px dotted #666; padding: 10px;}
+ol.commentlist li.comment div.comment-author {}
+ol.commentlist li.comment div.vcard {}
+ol.commentlist li.comment div.vcard cite.fn {font-style: normal;}
+ol.commentlist li.comment div.vcard cite.fn a.url {}
+ol.commentlist li.comment div.vcard img.avatar {float:right; margin: 0 0 10px 10px;}
+ol.commentlist li.comment div.vcard img.avatar-32 {}
+ol.commentlist li.comment div.vcard img.photo {}
+ol.commentlist li.comment div.vcard span.says {}
+ol.commentlist li.comment div.commentmetadata {}
+ol.commentlist li.comment div.comment-meta {font-size: 10px;}
+ol.commentlist li.comment div.comment-meta a {color: #ccc;}
+ol.commentlist li.comment p {}
+ol.commentlist li.comment ul {}
+ol.commentlist li.comment div.reply {font-size: 11px;}
+ol.commentlist li.comment div.reply a {font-weight: bold;}
+ol.commentlist li.comment ul.children {list-style: none; margin: 10px 0 0;}
+ol.commentlist li.comment ul.children li {}
+ol.commentlist li.comment ul.children li.alt {}
+ol.commentlist li.comment ul.children li.bypostauthor {}
+ol.commentlist li.comment ul.children li.byuser {}
+ol.commentlist li.comment ul.children li.comment {}
+ol.commentlist li.comment ul.children li.comment-author-admin {}
+ol.commentlist li.comment ul.children li.depth-2 {border-left: 5px solid #555; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-3 {border-left: 5px solid #999; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-4 {border-left: 5px solid #bbb; margin: 0 0 10px 10px;}
+ol.commentlist li.comment ul.children li.depth-5 {}
+ol.commentlist li.comment ul.children li.odd {}
+ol.commentlist li.even {background: #fff;}
+ol.commentlist li.odd {background: #f6f6f6;}
+ol.commentlist li.parent {border-left: 5px solid #111;}
+ol.commentlist li.thread-alt {}
+ol.commentlist li.thread-even {}
+ol.commentlist li.thread-odd {}
+
+
+/* Print styles!
+-------------------------------------------------------------------------------*/
+@media print {
+
+
+
+}
+
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+	
+		
+}
+
+@media all and (orientation: portrait) {
+	
+}
+
+@media all and (orientation: landscape) {
+	
+}
+/*
+
+*/
+/*temp*/
+.content { width: 950px; height: auto; margin: 10px auto 30px;
+    padding: 5px 0 5px 5px;    
+	border: 5px solid white;
+    position:relative;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);
+
+    }
+.event { width: 310px; height: 210px; display: inline-block;  margin: 0; overflow: hidden; margin: 0 0 5px 0;}
+.img { margin: 0 auto; background:url(images/load.gif) center center no-repeat; min-width: 300px; min-height: 200px;}
+.size1 { width: 625px; }
+.size2 { height: 425px; }
+
+.container { margin: 0 auto;}
+
+
+/*pager box*/
+#page {width:100%; margin: 0 auto; min-height: 500px;}
+#branding { width:960px; margin: 0 auto;}
+#wrap {width:960px; margin: 0 auto;}
+#main {float: left; width: 70%;}
+#tertiary {    float: right;    overflow: hidden;    width: 28%;}
+
+
+
+#content {}
+
+#content .category .category_header li { width: auto; display: inline-block;}
+.category .article { float: left; width: 161px; height: 230px; }
+.category .article .entry-details { display: none;}
+.category .article .entry-header .entry-shoot-small { width: 145px; height:98px; overflow: hidden;
+	margin: 4px;
+	border: 4px solid white;
+    position:relative;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.30);
+}
+
+
+.category .article:first-of-type { width: 100%; height:340px; position: relative; }
+.category .article:first-of-type .entry-details {width: 625px; height: 210px; display: block; overflow: hidden;
+    margin:10px 10px 10px 0;   
+	border: 10px solid white;
+    position:relative;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);
+    -webkit-box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.30);}
+
+.article .entry-details .catergory_title ,.article .entry-details .entry-title ,.article .entry-details .entry-video {
+	position: absolute;
+	left:20px; width: auto; line-height: 13px; padding: 2px 6px; background: #fff; }
+.article .entry-details .catergory_title { top: 144px }
+.article .entry-details .entry-title {top: 161px; line-height: 15px; font-size: 15px; }
+.article .entry-details .entry-video {top: 180px;font-size: 84%; color: #000;  text-decoration:none;}
+.article .entry-details .entry-video a {color: #000;  text-decoration:none;}
+.category .article:first-of-type .entry-shoot a { width: 625px; height: 210px; display: block; float: left;}
+.category .article:first-of-type .entry-content .entry-shoot-small { display: none;}
+
+#loading { width:100%; height:100%; position:absolute; top:0; left:0; display:block; background:#666; opacity:0.8; z-index:999}
+/*=====
+salespabebox
+======
+.salesbrand .brandinfo { width:950px; height:300px; padding:30px 0 0 10px}
+.salesbrand .brandinfo img { float:left;}
+	.salesbrand .brandinfo .infobox { width:270px; height:270px; padding:15px; float:left; background:url(../images/common/bg-seale-brandinfo.gif) no-repeat; overflow:hidden;}
+	.salesbrand .brandinfo .infobox .btn_story { margin-right:13px;}
+	.salesbrand .brandinfo .infobox .btn_video{ margin-right:0px;}
+	.salesbrand .brandinfo .time { width:300px; padding:2px 10px 0 0;  line-height:30px; height:40px; float:left;}
+		.salesbrand .brandinfo .time div { width:auto; display:inline; color:#111; font-size:14px;font-weight:none;}
+		.salesbrand .brandinfo .time span { font-size:24px; color:#F00; font-weight:bold;}
+	.salesbrand .brandinfo .word { float:left; clear:left; line-height:32px; width:270px; text-align:center; margin-bottom:20px}
+	
+	.salesbrand .brandinfo .showbox { float:left; width:640px; height:300px; overflow:hidden;}
+		.salesbrand .brandinfo .showbox li {width:640px; height:100px; overflow:hidden;}
+.salesbrand .searchbar {  width:960px; height:34px; clear:both; }
+.salesbrand .searchbar .formbox { padding:2px 0 0 16px; height:auto;}
+.salesbrand .searchbar form { float:left; width:280px;}
+.salesbrand .quicklink { width:250px; float:left; padding: 8px 0 0 53px; color:#666666; letter-spacing:0.4em;}
+.salesbrand .quicklink a { color:#000000; text-decoration:underline; font-weight:bold; padding: 4px 4px 0 ;letter-spacing:0}
+.salesbrand .salestime { float:left; width:200px; padding:0; color:#ff0085; font-weight:bold;}
+.productlist { width:960px; height:auto; padding-top:20px}
+.productlist ul.list { clear:left; float:left;width:960px; margin-bottom:30px}
+.productlist .list li { width:300px; height:105px; padding:0 10px 20px 10px; float:left; position:relative}
+
+	.productlist .list li { background:#fff; position:relative; z-index:5}
+		.productlist .list dt { width:300px; height:12px;}
+		.productlist .list dl {  z-index:10; position:absolute; width:300px; left:10px; top:0; height:85px; background:#ccc}
+			.productlist .list .name { width:300px; height:28px; text-align:center; line-height:28px; letter-spacing:0.2em; float:left; font-size:13px;}
+
+			.productlist .list .glsprice ,.productlist .list .marketprice { width:132px; text-align:center;display:inline; float:left; height:22px; padding-left:12px}
+			.productlist .list .glsprice p { width:132px; padding:2px 0; border:1px solid #ccc;}
+			.productlist .list .marketprice p { width:132px; padding:2px 0; border:1px solid #ccc;}
+			.productlist .list .marketprice .mp_nomber { text-decoration:line-through;}
+			.productlist .list .link { width:300px; height:32px; float:left}
+			
+		.productlist .list .active .name { color:#ccc }
+		.productlist .list .active .glsprice p {border:1px solid #ff0000; background:#F00; color:#FFF; font-weight:bold; }
+		.productlist .list .active .marketprice  p{ color:#ccc}
+		
+		.productlist .list .fav  ,.productlist .list .inventory { position:absolute; z-index:20; top:17px; right:13px;   text-indent:-1000em;}
+		.productlist .list .fav  { background:url(../images/common/sp-sales-fav.png) no-repeat;width:24px; height:84px;}
+			.productlist .list .fav2  { background:url(../images/common/sp-sales-fav-gry.png) no-repeat;width:24px; height:84px;}
+			*html .productlist .list .fav  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/common/sp-sales-fav.png", sizingMethod="scale");}
+			*html .productlist .list .fav2  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/common/sp-sales-fav-gry.png", sizingMethod="scale");}
+		.productlist .list .inventory { background:url(../images/common/sp-sales-inventory.png)  no-repeat; width:32px; height:55px;}
+			*html .productlist .list .inventory  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/common/sp-sales-inventory.png", sizingMethod="scale");}
+		.productlist .list .inventory2 { background:url(../images/common/sp-sales-inventory-gry.png)  no-repeat; width:32px; height:77px;}
+			*html .productlist .list .inventory2  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/common/sp-sales-inventory-gry.png", sizingMethod="scale");}
+		.productlist .list .link a	{ background:url(../images/common/sp-sales-link.png) no-repeat; width:132px; height:18px; line-height:14px; color:#cfcfcf; text-align:center; float:left; margin:8px 0 0 85px; font-size:14px; padding:2px; letter-spacing:0.1em}
+			*html .productlist .list .link a {background:url(../images/common/sp-sales-link.gif) no-repeat;line-height:20px; }
+		
+		.productlist .list .active .link a { background-position: 0 -25px; color:#F00;}
+		.productlist .list .hover { width:310px; left:0; top:0; background:url(../images/common/bg-sales-list-hover.gif) 10px 0 no-repeat; cursor:pointer; z-index:1}
+		.productlist .list .loading { width:298px; height:398px; border:1px solid #ccc; display:block; text-align:center; line-height:350px; background:url(../images/common/loading.gif) center center no-repeat; text-indent:-1000em;}
+*/
+/*=====
+salespabebox
+======*/
+.eventclosedinfobox {}
+.eventclosedinfobox .info { width:960px; margin:0 auto; float:left; clear:left; text-indent:-1000em;}
+.eventclosedinfobox .info01 { height:326px; background:url(../images/common/sp-event-closed01.gif) no-repeat; overflow:hidden;}
+.eventclosedinfobox a.info02 { float:left; height:110px; background:url(../images/common/sp-event-closed02.gif) no-repeat; overflow:hidden;}
+.eventclosedinfobox .info03 { height:410px; background:url(../images/common/sp-event-closed03.gif) no-repeat; overflow:hidden;}
+.salesbrand .brandinfo { width:950px; height:300px; padding:30px 0 0 10px}
+.salesbrand .brandinfo img { float:left;}
+	.salesbrand .brandinfo .infobox { width:270px; height:270px; padding:15px; float:left; background:url(http://media2.glamour-sales.com.cn/skin/frontend/enterprise/default/images/common/bg-seale-brandinfo.gif) no-repeat; overflow:hidden;}
+	.salesbrand .brandinfo .infobox .btn_story { margin-right:13px;}
+	.salesbrand .brandinfo .infobox .btn_video{ margin-right:0px;}
+	.salesbrand .brandinfo .time { width:300px; padding:2px 10px 0 0;  line-height:30px; height:40px; float:left;}
+		.salesbrand .brandinfo .time div { width:auto; display:inline; color:#111; font-size:14px;font-weight:normal;}
+		.salesbrand .brandinfo .time span { font-size:24px; color:#F00; font-weight:bold;}
+	.salesbrand .brandinfo .word { float:left; clear:left; line-height:32px; width:270px; text-align:center; margin-bottom:20px}
+
+	.salesbrand .brandinfo .showbox { float:left; width:640px; height:300px; overflow:hidden;}
+		.salesbrand .brandinfo .showbox li {width:640px; height:300px; overflow:hidden;}
+.salesbrand .searchbar {  width:960px; height:34px; clear:both; }
+.salesbrand .searchbar .formbox { padding:2px 0 0 16px; height:auto;}
+.salesbrand .searchbar form { float:left; width:280px;}
+.salesbrand .quicklink { width:250px; float:left; padding: 8px 0 0 53px; color:#666666; letter-spacing:0.4em;}
+.salesbrand .quicklink a { color:#000000; text-decoration:underline; font-weight:bold; padding: 4px 4px 0 ;letter-spacing:0}
+.salesbrand .salestime { float:left; width:200px; padding:0; color:#ff0085; font-weight:bold;}
+.productlist { width:950px; height:auto; }
+.productlist ul { clear:left; float:left;width:960px; /*margin-bottom:30px*/}
+.productlist .list li { width:300px; height:495px; padding:0 10px 20px 10px; float:left; position:relative}
+.productlist .hover { width:300px; height:495px; position:absolute; left:10px; display:none;}
+
+	.productlist .list li { background:url(http://media2.glamour-sales.com.cn/skin/frontend/enterprise/default/images/common/bg-sales-list.gif) 10px 0 no-repeat; position:relative; z-index:5}
+		.productlist .list dl {  z-index:10; position:absolute; width:300px; left:10px; top:0; height:495px;}
+			.productlist .list .name { width:300px; height:28px; text-align:center; line-height:28px; letter-spacing:0.08em; float:left; font-size:13px;}
+
+			.productlist .list .glsprice ,.productlist .list .marketprice { width:132px; text-align:center;display:inline; float:left; height:22px; padding-left:12px}
+			.productlist .list .glsprice p { width:132px; padding:2px 0; border:1px solid #ccc;}
+			.productlist .list .marketprice p { width:132px; padding:2px 0; border:1px solid #ccc;}
+			.productlist .list .marketprice .mp_nomber { text-decoration:line-through;}
+			.productlist .list .link { width:300px; height:32px; float:left}
+
+		.productlist .list .active .name { color:#ccc }
+		.productlist .list .active .glsprice p {border:1px solid #ff0000; background:#F00; color:#FFF; font-weight:bold; }
+		.productlist .list .active .marketprice  p{ color:#ccc}
+
+		.productlist .list .fav  ,.productlist .list .inventory { position:absolute; z-index:20; top:17px; right:13px;   text-indent:-1000em;}
+		.productlist .list .fav  { background:url(../images/common/sp-sales-fav.png) no-repeat;width:24px; height:84px;}
+			.productlist .list .fav2  { background:url(../images/common/sp-sales-fav-gry.png) no-repeat;width:24px; height:84px;}
+			*html .productlist .list .fav  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/skin/frontend/enterprise/default/images/common/sp-sales-fav.png", sizingMethod="scale");}
+			*html .productlist .list .fav2  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/skin/frontend/enterprise/default/images/common/sp-sales-fav-gry.png", sizingMethod="scale");}
+		.productlist .list .inventory { background:url(../images/common/sp-sales-inventory.png)  no-repeat; width:32px; height:55px;}
+			*html .productlist .list .inventory  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/skin/frontend/enterprise/default/images/common/sp-sales-inventory.png", sizingMethod="scale");}
+		.productlist .list .inventory2 { background:url(../images/common/sp-sales-inventory-gry.png)  no-repeat; width:32px; height:77px;}
+			*html .productlist .list .inventory2  { background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/skin/frontend/enterprise/default/images/common/sp-sales-inventory-gry.png", sizingMethod="scale");}
+		.productlist .list .link a	{ background:url(../images/common/sp-sales-link.png) no-repeat; width:132px; height:18px; line-height:14px; color:#cfcfcf; text-align:center; float:left; margin:8px 0 0 85px; font-size:14px; padding:2px; letter-spacing:0.1em}
+			*html .productlist .list .link a {background:url(../images/common/sp-sales-link.gif) no-repeat;line-height:20px; }
+
+		.productlist .list .active .link a { background-position: 0 -25px; color:#F00;}
+		.productlist .list .hover { width:310px; left:0; top:0; background:url(http://media2.glamour-sales.com.cn/skin/frontend/enterprise/default/images/common/bg-sales-list-hover.gif) 10px 0 no-repeat; cursor:pointer; z-index:1}
+		.productlist .list .loading { width:298px; height:398px; border:1px solid #ccc; display:block; text-align:center; line-height:350px; background:url(http://media2.glamour-sales.com.cn/skin/frontend/enterprise/default/images/common/loading.gif) center center no-repeat; text-indent:-1000em;}
+
+.productlist {position:relative;}
+
+*html .salesbrand {position:relative;}
+*html .salesbrand .searchbar {position:absolute; top:332px;}
+*html .productlist .list {padding:40px 0 0 0 }
+*html .productlist .toolbar {position:relative;float:right;top:14px;}
+
+.productlist .toolbar { width:500px; position:absolute; top:-26px; right:0; z-index:100; zoom:1;}
+.productlist .toolbar .pager {margin:0; }
+.productlist .toolbar .pager li { height:20px; margin-left:4px;padding:0;}
+.productlist .toolbar .pager li a {padding:0 8px 2px;height:18px;line-height:18px;}
+
+.bottom-pager .toolbar{ position:relative; top:0px; right:0px;float:right;width:942px;margin-bottom:10px}
+
+/*.bottom-pager .toolbar .pager{background-color:#CCCCCC}*/
+.pager .pagersinfo {float:right;width:auto;width:auto;display:inline;line-height:22px;padding:0 10px;}
+.pager .pagersinfo .space{padding:0 10px; display:none}
+
+.productlist .top-pager .toolbar .pager li.number , .productlist .top-pager .toolbar .pager .pagersinfo { display:none;}
+.productlist .pager .arrows {
+border-bottom:6px dashed transparent;
+border-left:none;
+border-right:6px solid #999999;
+border-top:6px dashed transparent;
+height:0;left:5px;line-height:0;position:absolute;top:3px;width:0;
+}
+
+.productlist .pager .pages {padding-right:0;}
+.productlist .pager .arrows_right {border-left:6px solid #999999;border-right:none; left:53px;}
+.productlist .toolbar .pager li {display:inline-block;border: 1px solid #CCCCCC;}
+.productlist .toolbar .pager li.txt a { width:40px; position:relative; padding:0 20px  2px; }
+.productlist .toolbar .pager li.txt_left a { padding-right:6px}
+.productlist .toolbar .pager li.txt_right a {padding-left:6px}
+.productlist .toolbar .pager li.current {background:#CCCCCC; padding:4px 8px 0; height:16px;}
+.productlist .toolbar .pager li.active ,.productlist .toolbar .pager li.active a {background:red; color:#FFF;}
+.productlist .toolbar .pager li.active .arrows{ border-right:6px solid #FFF;}
+.productlist .toolbar .pager li.active .arrows_right { border-left:6px solid #FFF; border-right:none; }
+.productlist .top-pager .toolbar {top:-26px}
+*html .productlist .top-pager .toolbar {top:8px;}
+*html .productlist .toolbar .pager li.active .arrows_left {border:#FFF; overflow:hidden}
+*html .productlist .toolbar .pager li.active .arrows_right {border:#FFF; overflow:hidden}
+*html .productlist .toolbar .pager li a {padding-top:3px; display:inline-block}
+*html .productlist .toolbar .pager li.txt a {padding-top:3px;}
+*html .productlist .toolbar .pager li.current {padding-top:5px; display:inline-block}
+*html .productlist .pager .arrows { top:5px;}
+*+html .productlist .toolbar .pager li.txt { line-height:18px; }
+/*==20110519 new filter==*/
+.productfilterbox { width:950px; padding:20px 0 0 10px; position:relative;}
+
+.productfilterbox .filterbox { width:920px; background:#eeeeee; border:1px solid #CCCCCC; padding:12px 9px 20px; }
+.productfilterbox .filterbody { width:10%; display:table; float:left;}
+.productfilterbox .filterbody .currently {clear:left;}
+.productfilterbox .filterbody li { width:33%; display:table; float:left;}
+.productfilterbox .filterbody dt {line-height:20px;}
+.productfilterbox .filterbody .select {font-weight:bold; color:red; }
+.productfilterbox .filterbox .price { width:42%}
+.productfilterbox .filterbox .price li { width:46%; line-height:17px;}
+.productfilterbox .filterbox .product_type { width:36%}
+.productfilterbox .filterbox .product_type li{ width:30%;}
+
+.productfilterbox .filterswitcher { position:absolute; width:50px; right:0; top:2px;}
+.productfilterbox .filterswitcher a { color:red}
+.productfilterbox .filterswitcher a b {-moz-transition: -webkit-transform 0.2s ease-in 0s;-moz-transition: -webkit-transform 0.2s ease-in 0s;
+    border-color: red #FFF #FFF;
+    border-style: solid;
+    border-width: 4px;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    width: 0;}
+.productfilterbox .filterswitcher a:hover b {    -moz-transform: rotate(180deg);    -moz-transform-origin: 50% 30%; }

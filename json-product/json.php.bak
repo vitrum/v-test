@@ -1,0 +1,40 @@
+<?php
+
+ $brand = array();
+ $brand[0]="nine west";
+ $brand[1]="juicy";
+ $brand[2]="diesel";
+ $brand[3]="phyto";
+ $brand[4]="chouchouchic";
+
+ $myarr=array();
+ for($i=0;$i<10;$i++)
+ {
+    $price=rand(1,3999);
+    $discount=rand(1,10);
+    $count=rand(0,4);
+    $thisbrand=$brand[$count];
+    $product=array();
+    $product=array("price"=>$price, "discount"=>$discount,"brand" =>$thisbrand,
+     "html" =>
+"<div class='hover' ><a href='product-st0.html?glscode=ST0-102-00003'>&nbsp;</a></div>" .
+"<dl class='infobox'>" .
+"<dt><a href='product-st0.html?glscode=ST0-102-00003'><img src='../images/product/ST0-102-00003a-m.jpg'></a></dt>" .
+"<dd class='name'>.$brand.</dd>" .
+"<dd class='glsprice'><p>RMB.$price.<span class='glsprice_nomber'>160</span></p></dd>" .
+"<dd class='marketprice'><p>折扣.$discount.<span class='mp_nomber'>3600</span></p></dd>" .
+"<dd class='link'><a href='product-st0.html?glscode=ST0-102-00003'>即时抢购</a></dd>" .
+"<dd class='fav'><span class='fav_ryli'>瑞丽推荐</span></dd></dl>",
+
+    );
+
+    $myarr[]=array("products" =>$product);
+ }
+
+
+
+$json_string = json_encode($myarr);
+
+echo "$json_string";
+
+?>

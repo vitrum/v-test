@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2011 Glamour-Sales China Inc.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ 
+  Original: Vitrum.Zhu (vitrum.cn@gmail.com)
+--> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <title>Glamour Sales China Blog</title> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" /> 
+    <link href="css/jqtransform.css" rel="stylesheet" type="text/css" /> 
+    
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  </head> 
+  <body class="">
+		<header id="branding">
+			<hgroup>
+				<h1 class="logo">Glamour Sales China Blog</h1>
+				<h2 class="store">魅力惠商城</h2>
+			</hgroup>
+			<nav class="filter">
+				<ol class="price">
+					<li><a href="#" class="price-level-1">price-level-1</a></li>
+                    <li><a href="#" class="price-level-2">price-level-1</a></li>
+                    <li><a href="#" class="price-level-3">price-level-1</a></li>
+                    <li><a href="#" class="price-level-4">price-level-1</a></li>
+				</ol>
+                <ol class="discount">
+					<li><a href="#" class="discount-level-1">discount-level-1</a></li>
+                    <li><a href="#" class="discount-level-2">discount-level-2</a></li>
+                    <li><a href="#" class="discount-level-3">discount-level-3</a></li>
+				</ol>
+                <ol class="brand">
+					<li><a href="#" class="brand-level-1">brand-level-1</a></li>
+                    <li><a href="#" class="brand-level-2">brand-level-2</a></li>
+                    <li><a href="#" class="brand-level-3">brand-level-3</a></li>
+				</ol>
+			</nav>
+            <div class="searchbar">
+            	<div class="formbox">
+                	<!--<p class="quicklink">种类:<a href="####">外套</a><a href="####">裙子</a><a href="####">包</a><a href="####">鞋子</a></p>-->
+                    <form action="" method="post" id="salesboxsearch">
+                        
+                        <select id="rule01" name="rule01">
+                        	<option>类型</option>
+                            <option value="tag01">太阳镜</option>
+                        </select>
+                        
+                    </form>
+                </div>
+            </div>
+            <div class="productlist">
+                <ul id="list" class="list">
+                	<li><span class="loading">loading...</span></li>
+                </ul>
+            </div>
+			<section class="content"> 
+				<div class="container">
+					<div class="event ">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/slogg_banner_01.jpg" />
+					</div>
+					<div class="event ">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/Juicy_banner_01_20110624.jpg" />
+					</div>
+					<div class="event size2">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/Sellenalela_banner_01.jpg" />
+					</div>
+					<div class="event size1">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/Frangipani_banner_01_20110622.jpg" />
+					</div>
+					<div class="event">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/Lancaster_banner_01_20110410_1.jpg" />
+					</div>
+					<div class="event size1">
+						<img class="img" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/killah_banner_01_20110623.jpg" />
+					</div>
+				</div>
+                
+			</section>
+
+		</header>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery.1.6.1.min.js'>\x3C/script>")</script>
+	<script src="js/jquery.isotope.min.js" type="application/javascript" ></script> 
+	<script src="js/jquery.lazyload.js" type="application/javascript" ></script> 
+    <script src="js/jquery.jqtransform.js" type="application/javascript" ></script>
+	<script src="js/inc.js" type="application/javascript"></script>
+<script type="text/javascript"> 
+<!--
+$(document).ready(function(){  
+						   
+
+						   
+						   
+	$('form').jqTransform({imgPath:'../images/img/'});
+	
+	var salesConfig2 = {
+			 interval: 30,
+			 sensitivity: 1,
+			 over: addSales2,
+			 timeout: 30,
+			 out: removeSales2
+		};
+	function addSales2(){
+		$(this).find(".hover").fadeIn('10');
+		$(this).addClass("active");
+	}
+	function removeSales2(){
+		$(this).find(".hover").fadeOut("10");
+		$(this).removeClass("active");
+	}
+	
+	
+	
+	
+	var salesConfig = {
+			 interval: 30,
+			 sensitivity: 1,
+			 over: addSales,
+			 timeout: 30,
+			 out: removeSales
+		};
+		
+	
+		
+//产品JSON 添加和过滤
+	function testClick(obj) { 
+ 
+		var url = obj.url;//+"?random="+Math.random();
+		var tag = obj.tag;
+		
+		$.ajax({ url:url, //后台处理程序 
+			type:'get', //数据发送方式 
+			dataType:'json', //接受数据格式 
+			beforeSend: function(XMLHttpRequest){
+				//ShowLoading();
+				
+			},
+			success: function(data, textStatus){
+				$("#list").html(''); 
+				var html = "";
+				var retCnt = data.totalCount;
+				var info = data.root;
+				//alert("tag="+tag);	
+				//alert("tag=" +tag);
+				if (tag == "类型") {tag ="all" };
+				if (tag == "折扣") {tag ="all" };
+				for(var i = 0;retCnt >0 && i < retCnt; i++)
+				{ 
+					if ( tag == 'all' ){
+						//alert("tag=all!");
+						//alert(info[i].tag );
+						//html = html + '<li class='+ info[i].discount +'><a href="'+ info[i].url +'"><img src="../images/product/'+ info[i].imgurl +'" /><span class="hover" style="background:url(../images/product/'+ info[i].imgurlhover +')">&nbsp;<'+'/span><'+'/a><'+'/li>';
+						html = html +'<li class='+ info[i].discount +'><div class="hover"><a href="'+ info[i].url +'">&nbsp;<'+'/a><'+'/div><dl class="infobox"><dt><a href="'+ info[i].url +'"><img src="../images/product/'+ info[i].imgurl +'" /><'+'/a><'+'/dt><dd class="name">'+ info[i].name +'<'+'/dd><dd class="glsprice"><p>RMB <span class="glsprice_nomber">'+ info[i].glsprice +'<'+'/span><'+'/p><'+'/dd><dd class="marketprice"><p>市场价 RMB <span class="mp_nomber">'+ info[i].marketprice +'<'+'/span><'+'/p><'+'/dd><dd class="link"><a href="'+ info[i].url +'">即时抢购<'+'/a><'+'/dd>';
+							
+							if ( info[i].inventory == 'no' ){html = html +'<dd class="inventory"><span class="outoff">缺货<'+'/span><'+'/dd>';}else{
+								if ( info[i].fav == 'yes' ){html = html +'<dd class="fav"><span class="fav_ryli">瑞丽推荐<'+'/span><'+'/dd>';};
+								};
+						
+						html = html +'<'+'/dl><'+'/li>';
+ 
+					}else{
+						if (info[i].tag == tag ){
+							html = html +'<li class='+ info[i].discount +'><div class="hover"><a href="'+ info[i].url +'">&nbsp;<'+'/a><'+'/div><dl class="infobox"><dt><a href="'+ info[i].url +'"><img src="../images/product/'+ info[i].imgurl +'" /><'+'/a><'+'/dt><dd class="name">'+ info[i].name +'<'+'/dd><dd class="glsprice"><p>RMB <span class="glsprice_nomber">'+ info[i].glsprice +'<'+'/span><'+'/p><'+'/dd><dd class="marketprice"><p>市场价 RMB <span class="mp_nomber">'+ info[i].marketprice +'<'+'/span><'+'/p><'+'/dd><dd class="link"><a href="'+ info[i].url +'">即时抢购<'+'/a><'+'/dd>';
+							
+							if ( info[i].inventory == 'no' ){html = html +'<dd class="inventory"><span class="outoff">缺货<'+'/span><'+'/dd>';}else{
+								if ( info[i].fav == 'yes' ){html = html +'<dd class="fav"><span class="fav_ryli">瑞丽推荐<'+'/span><'+'/dd>';};
+								};
+						
+						html = html +'<'+'/dl><'+'/li>'; 
+						};
+					};
+
+				};
+
+				if ( html == ""){ html ="<li>查询参数："+ tag +" 。NULL数据！<"+"/li>"; }
+				$("#list").append(html);
+				//$("#list a").hoverIntent(salesConfig);
+				$("ul.list li").hoverIntent(salesConfig2);
+	
+			},
+			error: function(){
+				//请求出错处理
+			}
+		}); 
+
+
+		
+
+
+
+	/*	$.getJSON(url,function(getjson){
+
+			var date = getjson;
+
+			var info = date.root;
+			alert(date);
+			alert(info);
+			alert("JSON Data: " + info[3].url);
+        });*/
+	} 
+	
+
+	$(".type a").click(function(){
+		var tags = $(this).attr("title");
+
+		testClick({url:'sales-st0.json', tag:tags});//开始加载数据 list.json是数据
+		return false;
+	});	
+	
+	$(".discount a").click(function(){
+		var dis = $(this).attr("title");
+		dis = dis.replace(/#/, "");
+		$("#list").find("li").hide();
+		$("#list").find("li."+dis).show();
+	});	
+	$("#jqf_ul_rule01 li a").click(function(){
+		var tags = $(this).attr("link");
+		tags = tags.replace(/#/, "");
+		testClick({url:'sales-st0.json', tag:tags});
+		$('form').jqTransform({imgPath:'../images/img/'});
+	});
+	
+	$("#jqf_ul_rule02 li a").click(function(){
+		var dis = $(this).attr("link");
+		dis = dis.replace(/#/, "");
+		$("#list").find("li").hide();
+		$("#list").find("li."+dis).show();
+		if (dis =="尺寸"){$("#list").find("li").show(); };
+	});
+
+	testClick({url:'sales-st0.json',tag:'all'});//开始加载数据 list.json是数
+	
+	function addSales(){
+		$(this).find("span.hover").fadeIn('10');
+	}
+	function removeSales(){
+		$(this).find("span.hover").fadeOut("10");
+	}
+
+
+
+
+
+});  
+-->
+</script>
+
+
+  </body>
+
+ </html>

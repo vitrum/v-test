@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2011 Glamour-Sales China Inc.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ 
+  Original: Vitrum.Zhu (vitrum.cn@gmail.com)
+--> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <title>Glamour Sales China Blog</title> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" /> 
+    <link href="css/jqtransform.css" rel="stylesheet" type="text/css" /> 
+    
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  </head> 
+  <body class="">
+		<header id="branding">
+			<hgroup>
+				<h1 class="logo">Glamour Sales V2 research</h1>
+			</hgroup>
+
+			<div class="sortbar">
+            	<p>sorter</p>
+				<a href="####" class="sort_price_height" title="sortPriceDesc">sort_price_height</a>
+                <a href="####" class="sort_price_low" title="sortPrice">sort_price_low</a>
+                <a href="####" class="sort_price_low" title="sortDiscount">sort_Discoun_height</a>
+                <a href="####" class="sort_price_low" title="sortDiscountDesc">sort_Discoun_low</a>
+			</div>
+            <div class="productlist">
+                <nav class="filter">
+                    <p>filter</p>
+                    <ol class="price">
+                        <li><a href="#" class="price-level-1">price-level-1</a></li>
+                        <li><a href="#" class="price-level-2">price-level-1</a></li>
+                        <li><a href="#" class="price-level-3">price-level-1</a></li>
+                        <li><a href="#" class="price-level-4">price-level-1</a></li>
+                    </ol>
+                    <ol class="discount">
+                        <li><a href="#" class="discount-level-1">discount-level-1</a></li>
+                        <li><a href="#" class="discount-level-2">discount-level-2</a></li>
+                        <li><a href="#" class="discount-level-3">discount-level-3</a></li>
+                    </ol>
+                    <ol class="brand">
+                        <li><a href="#" class="brand-level-1">brand-level-1</a></li>
+                        <li><a href="#" class="brand-level-2">brand-level-2</a></li>
+                        <li><a href="#" class="brand-level-3">brand-level-3</a></li>
+                    </ol>
+                </nav>
+            	<ul class="list">
+                	<li><span class="loading">loading...</span></li>
+                </ul>
+				<div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+		</header>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery.1.6.1.min.js'>\x3C/script>")</script>
+<script>
+
+	var times = []; //time track
+
+jQuery.fn.sort = function() {  
+    return this.pushStack( [].sort.apply( this, arguments ), []);  
+};  
+
+ function sortPrice(a,b){  
+     if (a.price == b.price){
+       return 0;
+     }
+     return a.price> b.price ? 1 : -1;  
+ };  
+  function sortPriceDesc(a,b){  
+     return sortPrice(a,b) * -1;  
+ };
+ function sortDiscount(a,b){  
+     if (a.discount == b.discount){
+       return 0;
+     }
+     return a.discount> b.discount ? 1 : -1;  
+ };  
+  function sortDiscountDesc(a,b){  
+     return sortDiscount(a,b) * -1;  
+ };
+
+	function testJson(obj) { 
+ 
+		var url = obj.url;//+"?random="+Math.random();
+		var tag = obj.tag;
+		//var sortRule = sortRule;
+		var allCount = 0;
+		
+		var jqxhr = $.getJSON(url, function(data) {})
+		.error(function(data) { alert("error"); })
+		.success(function(data) { 
+			times.push(new Date().getTime());
+			var items = [];
+			var retCnt = data.length;
+			var info = data;
+			
+			if (tag != ''){
+				
+				switch (tag) 
+				   { 
+				   case 'sortPriceDesc': 
+					 info = $(info).sort(sortPriceDesc);
+					 break 
+				   case 'sortDiscount': 
+					 info = $(info).sort(sortDiscount);
+					 break 
+				   case 'sortDiscountDesc': 
+					 info = $(info).sort(sortDiscountDesc);
+					 break 
+				   default: 
+					 info = $(info).sort(sortPrice);
+				} 
+				
+				
+			}
+			
+			for(var i = 0;retCnt >0 && i < retCnt; i++)
+				{ 
+				items.push('<li id="product_' + i + '" class="p-'+  info[i].price  +' d-'+ info[i].discount +' b-'+ info[i].brand +'">' + info[i].html + '</li>');
+				allCount = i;
+				};
+				
+			$('<ul/>', {
+				'class': 'list',
+				html: items.join('')
+				}).replaceAll('.productlist .list');
+		})
+		.complete(function() { 
+			times.push(new Date().getTime());
+		});
+		
+		jqxhr.complete(function(){ 
+			times.push(new Date().getTime());
+			alert("time used:"+(times[2] - times[0]) / 1000 + "sec. \n"  + "all Count:"+ (allCount +1 ) +"items."); 
+		});
+	}
+	
+	
+	testJson({url:'newtemplate-2.json',tag:'all'});
+	
+	$(".sortbar a").click(function(){
+		var tags = $(this).attr("title");
+		testJson({url:'newtemplate-2.json',tag:tags});//开始加载数据 
+		return false;
+	});
+	
+	
+	
+</script>
+
+
+  </body>
+
+ </html>

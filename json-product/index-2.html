@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2011 Glamour-Sales China Inc.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ 
+  Original: Vitrum.Zhu (vitrum.cn@gmail.com)
+--> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <title>Glamour Sales China v2 test</title> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" /> 
+    <link href="css/jqtransform.css" rel="stylesheet" type="text/css" /> 
+    
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  </head> 
+  <body class="">
+		<header id="branding">
+			<hgroup>
+				<h1 class="logo">Glamour Sales V2 research</h1>
+			</hgroup>
+			<div class="sortbar">
+            	<p>sorter</p>
+				<a href="####" class="sort_price_height" title="sortPriceDesc">sort_price_height</a>
+                <a href="####" class="sort_price_low" title="sortPrice">sort_price_low</a>
+                <a href="####" class="sort_price_low" title="sortDiscount">sort_Discoun_height</a>
+                <a href="####" class="sort_price_low" title="sortDiscountDesc">sort_Discoun_low</a>
+                <a href="####" class="sort_price_low" title="sort_Off">sort_Off</a>
+			</div>
+            <div class="productlist">
+                <nav class="filter">
+                    <p>filter</p>
+                    <ol class="price">
+                        <li><a href="#" class="price-level-1">price-level-1</a></li>
+                        <li><a href="#" class="price-level-2">price-level-1</a></li>
+                        <li><a href="#" class="price-level-3">price-level-1</a></li>
+                        <li><a href="#" class="price-level-4">price-level-1</a></li>
+                    </ol>
+                    <ol class="discount">
+                        <li><a href="#" class="discount-level-1">discount-level-1</a></li>
+                        <li><a href="#" class="discount-level-2">discount-level-2</a></li>
+                        <li><a href="#" class="discount-level-3">discount-level-3</a></li>
+                    </ol>
+                    <ol class="brand">
+                        <li><a href="#" class="brand" title="diesel">brand:diesel</a></li>
+                        <li><a href="#" class="brand" title="pangea">brand:pangea</a></li>
+                        <li><a href="#" class="brand" title="BCBG">brand:BCBG</a></li>
+                        <li><a href="#" class="brand" title="phyto">brand:phyto</a></li>
+                        <li><a href="#" class="brand" title="lagostina">brand:lagostina</a></li>
+                    </ol>
+                </nav>
+            	<ul class="list">
+                	<li><span class="loading">loading...</span></li>
+                </ul>
+				<div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+		</header>
+    <div class="dev_info" style=" position:fixed; top:0; left:0; width:300px; height:100px; z-index:999; background:#CCC">
+        <div class="info"></div>
+        <div class="tempinfo"></div>
+        <div class="scrollinfo"></div>
+        <div class="addmoreinfo"></div>
+        <input name="showmoreproduct" id="showmoreproduct" value="1" />
+    </div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery.1.6.1.min.js'>\x3C/script>")</script>
+<script>
+
+var times = []; //time track
+var loadingStr = "<li><span class=\"loading\">loading...</span></li>";
+var tebtimes = new Date();
+var hght = 0;//初始化滚动条总长
+var top = 0;//初始化滚动条的当前位置
+var firstShow = 21 ;
+	
+jQuery.fn.sort = function() {  
+    return this.pushStack( [].sort.apply( this, arguments ), []);  
+};  
+
+function sortPrice(a,b){  
+	if (a.price == b.price){
+		return 0;
+	}
+	return a.price> b.price ? 1 : -1;  
+};  
+function sortPriceDesc(a,b){  
+ 	return sortPrice(a,b) * -1;  
+};
+
+function sortDiscount(a,b){  
+	if (a.discount == b.discount){
+		return 0;
+	}
+	return a.discount> b.discount ? 1 : -1;  
+};  
+function sortDiscountDesc(a,b){  
+	return sortDiscount(a,b) * -1;  
+};
+function showLoading(){  
+	$('<ul/>', {
+		'class': 'list',
+		html: loadingStr
+	}).replaceAll('.productlist .list');
+}; 
+
+
+function cando(){
+	if(top>parseInt(hght/3)*2)//判断滚动条当前位置是否超过总长的2/3，parseInt为取整函数
+	showmore();//如果是，调用show函数加载内容。
+}
+
+function showmore(){
+	hght = 0;//恢复滚动条总长，因为$("#mypage").scroll事件一触发，又会得到新值，不恢复的话可能会造成判断错误而再次加载……
+	top	 = 0;//原因同上。
+	$(".scrollinfo").html("add more!  <br />top:" + top + "<br /> height:" + hght);
+	if ( morePart != ""){
+		//do some thins
+		
+		//check the filter and sorder
+		
+		
+		//$("#showmoreproduct").val(Number(morePart) +1);
+		showProductJson({url:'json.php'},{brand:'',rule:'Off',showmore:'1'});
+	}
+}
+function showMorePart(a){  
+	var a = Number($("#showmoreproduct").val());
+ 	return a;
+};
+function showProductJson(obj,filter) { 
+
+	var url = obj.url;//+"?random="+Math.random();
+	var tag = obj.tag;
+	var filterrule = filter.rule;
+	var filterKeyBrand = filter.brand;
+	var showMore = Number(filter.showmore);
+	var morePart = showMorePart();
+	
+	var allCount = 0;
+	
+	var jqxhr = $.getJSON(url, function(data) {})
+	.error(function(data) { //alert("error");
+	})
+	.success(function(data) { 
+		times.push(new Date().getTime());
+		var items = [];
+		var info = data.products;
+		// sort
+		if (tag != ''){
+			switch (tag) 
+			   { 
+			   case 'sortPriceDesc': 
+				 info = $(info).sort(sortPriceDesc);
+				 break 
+			   case 'sortDiscount': 
+				 info = $(info).sort(sortDiscount);
+				 break 
+			   case 'sortDiscountDesc': 
+				 info = $(info).sort(sortDiscountDesc);
+				 break 
+				case 'sortPrice':
+				info = $(info).sort(sortPrice);
+				break
+				case 'sortOff':
+				//info = $(info);
+				break
+			   default: 
+				 //info = $(info);
+			} 
+		}
+		// filter
+		if ( filterrule == 'On'){
+			var temp = info;
+			var newtemp = [];
+			var endtemp = [];
+			$.each(temp,function(val,key){
+				//回调函数有两个参数,第一个是元素索引,第二个为当前值
+				if (key.brand ==filterKeyBrand){
+					//alert('temp数组中 ,索引 : '+val+'	 对应的brand为: '+key.brand);
+					newtempm = temp.slice(val,val+1);
+					endtemp=$.merge(endtemp,newtempm);
+				}
+			});
+			info = endtemp;
+		}
+		var retCnt = info.length;
+		$(".addmoreinfo").html("ALL:" + info.length + ",showMore:" + showMore +",showMorePart():"+showMorePart());
+		if ( retCnt >= firstShow || showMore == "1"){
+			//retCnt = firstShow ;
+			for(var i = 0;retCnt >0 && i < retCnt; i++)
+				{ 
+					//alert(info[i].price + "," + i );
+					items.push('<li id="product_' + i + '" class="p-'+  info[i].price  +' d-'+ info[i].discount +' b-'+ info[i].brand +'">' + info[i].html + '</li>');
+					allCount = i;
+				};
+			$("#showmoreproduct").val(Number(showMorePart())+1);
+		}else {
+			var allCnt = retCnt;
+			retCnt = Number(firstShow * Number(showMore)) - 1 ;
+			if ( retCnt >= allCnt ) {   retCnt = allCnt; }
+			
+		}
+
+		//jQuery("#loading").fadeOut('slow');
+		tebtimes = setTimeout(function(){
+			$('<ul/>', {
+				'class': 'list',
+				html: items.join('')
+				}).replaceAll('.productlist .list');
+		},100);
+		
+	})
+	.complete(function() { 
+		times.push(new Date().getTime());
+	});
+	jqxhr.complete(function(){ 
+		times.push(new Date().getTime());
+		var testinfo ="time used:"+(times[2] - times[0]) / 1000 + "sec. \n"  + "all Count:"+ (allCount +1 ) +"items."; 
+		$(".info").html(testinfo);
+
+	});
+}	
+	showProductJson({url:'json.php',tag:'all'},{showmore:'1'});
+	
+	$(".sortbar a").click(function(){
+		showLoading();
+		var tags = $(this).attr("title");
+		showProductJson({url:'json.php',tag:tags},{rule:'Off',showmore:'1'});
+		return false;
+	});
+	$(".filter a").click(function(){
+		showLoading();
+		var rule = $(this).attr("title");
+		var id= $(this).attr("id");
+		showProductJson({url:'json.php'},{brand:rule,rule:'On',showmore:'1'});
+		return false;
+	});
+	
+	$(window).scroll( function() {//定义滚动条位置改变时触发的事件。
+		hght=$(window).height();//得到滚动条总长，赋给hght变量
+		top=$(window).scrollTop();//得到滚动条当前值，赋给top变量
+		$(".scrollinfo").html("top:" + top + "<br /> height:" + hght);
+	  });	
+setInterval("cando();",2000);//每隔2秒钟调用一次cando函数来判断当前滚动条位置。
+
+
+</script>
+
+
+  </body>
+
+ </html>
