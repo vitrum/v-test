@@ -26,7 +26,7 @@ $brand = array();
 
  $myarr=array();
 
- for($i=0;$i<60;$i++)
+ for($i=0;$i<2000;$i++)
  {
     $price = rand(1,3999);
     $discount = rand(1,10);
