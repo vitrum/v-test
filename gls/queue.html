@@ -1,0 +1,28 @@
+
+
+
+<script>
+	if (jQuery('.openEventBanner').length > 0 ){
+		jQuery('.openEventBanner .eventItem:eq(0)').addClass('active').show();
+		var bannerTime;
+		function bannercycle (){
+			bannerTime = setInterval(function(){
+				var $bannershow = jQuery('.openEventBanner .active').next('.eventItem'),
+					$bannerhide = jQuery('.openEventBanner .active');
+				
+				if ($bannershow.length == 0){$bannershow = jQuery('.openEventBanner .eventItem:eq(0)')};
+				
+				$bannershow.addClass('active').fadeIn(300);
+				$bannerhide.removeClass('active').fadeOut(300);
+			},6000);
+		}
+		if (jQuery('.openEventBanner .eventItem').length > 1){
+			bannercycle ();
+			/*setInterval(function(){
+				clearTimeout(bannerTime);
+				bannercycle ();
+			},300000);*/
+		}
+	}
+	
+</script>
