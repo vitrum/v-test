@@ -10,7 +10,29 @@
 	<title>vitrum/v-test @ GitHub queue test</title>
 
 	<script>
+
+		
 jQuery(document).ready(function() {
+	
+	var pagestats = 0;
+	function onBlur() {
+		pagestats = 0;
+		jQuery("span.pageStatus").text( pagestats); 
+	};
+	function onFocus(){
+		pagestats = 1;
+		jQuery("span.pageStatus").text( pagestats); 
+	};
+
+	if (/*@cc_on!@*/false) { // check for Internet Explorer
+		document.onfocusin = onFocus;
+		document.onfocusout = onBlur;
+	} else {
+		window.onfocus = onFocus;
+		window.onblur = onBlur;
+		
+	}
+	
 	if (jQuery('.openEventBanner').length > 0 ){
 		jQuery('.openEventBanner .eventItem:eq(0)').addClass('active').show();
 		var bannerTime;
@@ -21,15 +43,18 @@ jQuery(document).ready(function() {
 					$bannerhide = jQuery('.openEventBanner .active');
 				
 				if ($bannershow.length == 0){$bannershow = jQuery('.openEventBanner .eventItem:eq(0)')};
-				
-				$bannershow.addClass('active').fadeIn(100).stop();
-				$bannerhide.removeClass('active').fadeOut(100).stop();
-				bannerTimes = bannerTimes + 1 ;
-				jQuery("span").text( bannerTimes);  
-			},3000);
+				if (pagestats > 0) {
+					$bannershow.addClass('active').fadeIn(100);
+					$bannerhide.removeClass('active').fadeOut(100);
+					bannerTimes = bannerTimes + 1 ;
+					jQuery("span.bannerTimes").text( bannerTimes); 
+				}
+ 
+			},500);
 		}
 		if (jQuery('.openEventBanner .eventItem').length > 1){
 			bannercycle ();
+
 			/*setInterval(function(){
 				clearTimeout(bannerTime);
 				bannercycle ();
@@ -54,6 +79,7 @@ jQuery(document).ready(function() {
 
 <body style="">
 	<h1>bannerTimes: <span  class="bannerTimes"></span></h1>
+	<h2>pageStatus: <span  class="pageStatus"></span></h2>
 	<div class="openEventBanner">
 		<div class="eventItem">
 				<img width="630" height="430" alt="EQ:IQ" src="http://media2.glamour-sales.com.cn/media//enterprise/catalogevent/Happy_Face_banner_01_2.jpg">
