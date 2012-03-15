@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	  
+	<title>vitrum/v-test @ GitHub GLS API test</title>
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="http://www.glamour-sales.com.cn/js/bootstrap.min"></script>  
+	<style>
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+	</style>
+</head>
+
+<body >
+	
+<!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top" id="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="####">GLS iOS API Tools</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="####">Test Platform</a>
+              </li>
+              <li class="divider-vertical"></li>
+              <li class="">
+                <a href="####">API Document</a>
+              </li>
+
+              <li class="divider-vertical"></li>
+              <li class="">
+                <a href="####">Test Accounts</a>
+              </li>
+              <li class="">
+                <a href="####">Code Examples</a>
+              </li>
+              <li class="">
+                <a href="http://www.thomasfrank.se/downloadableJS/JSONeditor_example.html">JSON Editor</a>
+              </li>
+              
+              
+              <li class="divider-vertical"></li>
+              <li class="">
+                <a href="####">About Tool</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+	  <div class="row-fluid">
+		  <div class="well"><h1>GLS iOS API Test Platform</h1></div>
+	  </div>
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="row-fluid">
+        <div class="span4">
+
+			<form class="form-horizontal well">
+				<fieldset>
+				  <legend>提交信息设置</legend>
+
+				  <div class="control-group">
+					<label class="control-label" for="format">返回结果：</label>
+					<div class="controls">
+					  <select id="format" class="span2">
+						<option value="json" select="select">json</option>
+						<option value="xml">XML</option>
+					  </select>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="apiCategoryId">接口栏目：</label>
+					<div class="controls">
+					  <select id="apiCategoryId" class="span2">
+						<option>启动加载</option>
+						<option>用户</option>
+						<option >首页</option>
+						<option>分类</option>
+						<option>商品</option>
+						<option>购物车</option>
+						<option>结算中心</option>
+						<option>我的魅力惠</option>
+						<option>更多</option>
+						<option>支付宝</option>
+					  </select>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="sip_apiname">API 名称：</label>
+					<div class="controls">
+					  <select id="sip_apiname" class="span2">
+						<option value="home/index">首页活动</option>
+					  </select>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label">数据环境：</label>
+					<div class="controls">
+					  <label class="radio inline">
+						<input type="radio" name="restId" id="restId" value="option1" checked>
+						UJI server
+					  </label>
+					  <label class="radio inline">
+						<input type="radio" name="restId" id="restId" value="option2">
+						正式环境
+					  </label>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label">提交方式：</label>
+					<div class="controls">
+					  <label class="radio inline">
+						<input type="radio" name="sip_http_method" id="sip_http_method" value="option1" checked>
+						POST
+					  </label>
+					  <label class="radio inline">
+						<input type="radio" name="sip_http_method" id="sip_http_method" value="option2">
+						GET
+					  </label>
+					</div>
+				  </div>
+				  <!-- ==============================
+				  <div class="control-group">
+					<label class="control-label">Radio buttons</label>
+					<div class="controls">
+					  <label class="radio">
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+						Option one is this and that&mdash;be sure to include why it's great
+					  </label>
+					  <label class="radio">
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+						Option two can is something else and selecting it will deselect option one
+					  </label>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="optionsCheckbox">Checkbox</label>
+					<div class="controls">
+					  <label class="checkbox">
+						<input type="checkbox" id="optionsCheckbox" value="option1">
+						Option one is this and that&mdash;be sure to include why it's great
+					  </label>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="select01">Select list</label>
+					<div class="controls">
+					  <select id="select01">
+						<option>something</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					  </select>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="multiSelect">Multicon-select</label>
+					<div class="controls">
+					  <select multiple="multiple" id="multiSelect">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					  </select>
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="fileInput">File input</label>
+					<div class="controls">
+					  <input class="input-file" id="fileInput" type="file">
+					</div>
+				  </div>
+				  <div class="control-group">
+					<label class="control-label" for="textarea">Textarea</label>
+					<div class="controls">
+					  <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+					</div>
+				  </div>
+				  
+				  -->
+				  <div class="control-group">
+					  <label class="control-label" for="format">test</label>
+					  <div class="controls">
+						  <input type="text" class="span2" placeholder="Type something…" name="a">
+						  <span class="help-inline">Associated help text!</span>
+					  </div>
+				  </div>
+				  <hr class="soften">
+				  <div class="control-group">
+					<label class="control-label" for="textarea">Textarea</label>
+					<div class="controls">
+					  <textarea class="input-xlarge span2" id="textarea" rows="3"></textarea>
+					</div>
+				  </div>
+				  <hr class="soften">
+				  <div class="form-actions">
+					<button type="submit" class="btn btn-primary span2" onclick="checkForm();return false;">测试</button>
+				  </div>
+				</fieldset>
+				
+			</form>
+		</div>
+		<div class="span8">
+			<div class="row well">
+				<div class="postinfo">
+					<div class="control-group">
+						<label class="control-label" for="textarea">Post Info</label>
+						<div class="controls ">
+						  <textarea class="input-xlarge span6" id="param" rows="12" name="param"></textarea>
+						</div>
+					  </div>
+				</div>
+				<div class="getinfo">
+					<div class="control-group">
+						<label class="control-label" for="textarea">Return Info</label>
+						<div class="controls ">
+						  <textarea class="input-xlarge span6" id="resultShow" rows="30" name="resultShow"></textarea>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+		
+		
+      </div>
+      
+      
+      
+      <pre class="prettyprint linenums">$('#myModal').modal(options)</pre>
+      
+ 
+
+      
+      
+    </div>  
+
+<script>
+
+
+	
+jQuery(document).ready(function() {
+	prettyPrint();
+
+	
+});	
+	var ApiRoot = "http://uji.glamour-sales.com.cn/mobile/";
+
+	function checkForm() {
+		var $form = jQuery( "form" ),
+			url = ApiRoot + "home/index",
+			term = $form.find( 'input[name="s"]' ).val(),
+			postdate = "testToken=20120315&timeStamp=123456";
+		//alert(url);
+		
+		document.getElementById('param').value = "post url:" + url + '\n' + "postdate:" +postdate;
+		var request = jQuery.ajax({
+		  type: "POST",
+		  url: url,
+		  data: postdate
+		  
+		});
+		request.done(function(msg) {
+		  document.getElementById('resultShow').value = msg;
+
+		});
+		
+	}
+
+
+</script>
+</body>
+</html>
