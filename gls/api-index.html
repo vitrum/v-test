@@ -13,7 +13,7 @@
 	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="http://www.glamour-sales.com.cn/js/bootstrap.min"></script>  
+
 	<style>
       body {
         padding-top: 60px;
@@ -109,7 +109,8 @@
 				  <div class="control-group">
 					<label class="control-label" for="sip_apiname">API 名称：</label>
 					<div class="controls">
-					  <select id="sip_apiname" class="span2" onchange="callgetParamListByApi(this);">
+					  <select id="sip_apiname" class="span2" onchange="callgetParamListByApi(this);">.
+						<option value="">请选择接口</option>
 						<option value="index/version">1.1 版本检测</option>
 						<option value="index/loading">1.2 获取加载页图片</option>
 						<option value="index/device">1.3 提交DeviceToken</option>
@@ -162,9 +163,15 @@
 				  <div class="control-group">
 					  <label for="format" class="control-label">测试期间数据环境：</label>
 					  <div class="controls">
-						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="span2">
+						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="span2" value="uji" x-webkit-speech>
 						  <span class="help-inline">uji or local(v2)</span>
 					  </div>
+				  </div>
+				  <div class="control-group">
+					  <h2 id="selectapi">请选择调试的接口</h2>
+				  </div>
+				  <div class="control-group" id="apibox">
+						
 				  </div>
 				  <!-- ==============================
 				  <div class="control-group">
@@ -262,19 +269,18 @@
 					  </div>
 				  </div>
 				  -->
+
 				  <hr class="soften">
+				  <div class="form-actions">
+					<button type="submit" class="btn btn-primary span2" onclick="checkForm();return false;">测试</button>
+					<!--<a href="####" class="btn span1" id="loadapilist" onclick="callgetApiList();return false;">Load API</a>-->
+				  </div>
+  				  <hr class="soften">
 				  <div class="control-group">
 					<label class="control-label" for="textarea">Temp post info</label>
 					
 					  <textarea class="input-xlarge span4" id="temptxt" rows="10"></textarea>
 					
-				  </div>
-				  <div id="ParamDiv">
-				  </div>
-				  <hr class="soften">
-				  <div class="form-actions">
-					<button type="submit" class="btn btn-primary span2" onclick="checkForm();return false;">测试</button>
-					<a href="####" class="btn span1" id="loadapilist" onclick="callgetApiList();return false;">Load API</a>
 				  </div>
 				</fieldset>
 				
@@ -301,83 +307,83 @@
 			</div>
 		</div>
 		
-		
       </div>
-      
-      
-      
       <pre class="prettyprint linenums">$('#myModal').modal(options)</pre>
-      
- 
-
-      
-      
     </div>  
 
 <script>
 
-jQuery(document).ready(function() {
-	prettyPrint();
-	/*jQuery("#loadapilist").bind('click', function() {
-		alert('User clicked on "foo."');
-		callgetApiList();
-	});*/
-	
-});
-
 //API数组
-var apiArr = new Array();
+var JSON;
+var apitxt;
+if (!JSON) {
+    JSON = {};
+}
 var apiListUrl = 'api-tools-list.json';
-var response = '';
-
-
+var eventtimes = null;
+var sip_apiname = {};
 
 //获取API参数数组
 	function callgetApiList() {
-
-		/*var request  = jQuery.getJSON(apiListUrl, function(json){
-			apiParam = json;
-		});*/
 		var request = jQuery.ajax({
 		  type: "GET",
 		  url: apiListUrl
 		});
-		var $form = jQuery( "form" ),
-			term = $form.find( 'select[id="sip_apiname"]' ).val();
-
 		request.done(function(msg) {
-			
-			apiArr = eval("("+msg+")");
-			document.getElementById('resultShow').value = apiArr[0][0].name;
-			//var test = msg[0][0];
-			alert("url："+ apiListUrl + "，\n term：" + term + ",\n test: + test");
+			JSON = eval('(' + msg + ')');
+			apitxt = msg;
 		});
-		
 	}
 
 //根据不同的API来显示该API需要传递的参数
 	function callgetParamListByApi(o) {
 		var $form = jQuery( "form" ),
-			term = $form.find( 'select[id="sip_apiname"]' ).val();
-		
-			var sip_apiname = apiArr[term][0];
+			term = $form.find( 'select[id="sip_apiname"]' ).val(),
 
-			alert(sip_apiname);
+			html = "";
 			
+		jQuery('#selectapi').text( term );
+		jQuery('#apilist').text();
+		jQuery('#apibox').html();
+		
+		if ( JSON[term] == undefined) {
+			callgetApiList();
+			jQuery('#apibox').html();
+		} else {
+			sip_apiname = JSON[term];
+			jQuery('#resultShow').text( apitxt );
+			var tempjson = JSON[term];
 
+			jQuery.each(tempjson,function(){
+				//alert(this.name + "," + this.values);
+				html= html + '<div class="control-group '+ this.classname +'"><label for="format" class="control-label">'+ this.name +'：</label><div class="controls"><input type="text" id="'+ this.name +'" name="'+ this.name +'" placeholder="Type something…" class="span2" value="'+ this.values +'" x-webkit-speech><span class="help-inline">'+ this.desc +'</span></div></div>'
+			});
+			jQuery('#apibox').html(html);
+
+		}
 	}
 //提交API 访问
 	function checkForm() {
 		var $form = jQuery( "form" ),
 			term = $form.find( 'select[id="sip_apiname"]' ).val(),
-			temptxt = $form.find( 'textarea[id="temptxt"]' ).val(),
+			temptxt = "&" + $form.find( 'textarea[id="temptxt"]' ).val(),
 			restIdtemp = $form.find( 'input[id="restIdtemp"]' ).val(),
 			ApiRoot = "http://" + restIdtemp + ".glamour-sales.com.cn/mobile/",
-			url = ApiRoot + term ,
-			postdate = "testToken=20120315&timeStamp=123456&" + temptxt ;
+			postdate = "",
+			paramString = "",
+			url = ApiRoot + term ;
+			
+			if ( sip_apiname == undefined ){
+				postdate = "testToken=20120315&timeStamp=123456&" + temptxt ;
+			}else{
+				jQuery.each(sip_apiname,function(){
+					paramString += this.name + '=' + document.getElementById(this.name).value + '&';
+				});
+				postdate = "testToken=20120315&" + paramString + temptxt ;
+			}
 
 		document.getElementById('resultShow').value ="";
-		document.getElementById('param').value = "post url:" + url + '\n' + "postdate:" +postdate;
+		document.getElementById('param').value = "post url:" + url + '\n\n' + "postdate:" +postdate;
 		var request = jQuery.ajax({
 		  type: "POST",
 		  url: url,
@@ -391,7 +397,17 @@ var response = '';
 		
 	}
 
-
+jQuery(document).ready(function() {
+	//alert("jquery");
+	var $form = jQuery( "form" ),
+		term = $form.find( 'select[id="sip_apiname"]' ).val(),
+		sip_apiname = "";
+		
+	if ( JSON[term] == undefined) {
+		callgetApiList();
+	} 
+	prettyPrint();
+});
 </script>
 </body>
 </html>
