@@ -11,9 +11,33 @@
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+	
 	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="js/widgets.js"></script>
+	<script type="text/javascript" src="js/bootstrap-widgets.js"></script>
+	<!--
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	-->
+    
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>
+	
 
 	<style>
       body {
@@ -55,7 +79,7 @@
                 <a href="####" class="code">Code Examples</a>
               </li>
               <li class="">
-                <a href="http://www.thomasfrank.se/downloadableJS/JSONeditor_example.html"  target="_blank">JSON Editor</a>
+                <a class="editor" href="####" >JSON Editor</a>
               </li>
               
               
@@ -164,8 +188,8 @@
 				  <div class="control-group">
 					  <label for="format" class="control-label">测试期间数据环境：</label>
 					  <div class="controls">
-						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="span2" value="uji" x-webkit-speech>
-						  <span class="help-inline">uji or local(v2)</span>
+						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="span2" value="www"  x-webkit-speech lang="zh-CN" >
+						  <a href="#" class="help-inline" rel="popover" data-content="数据环境可以选：uji ,www, local 等" data-original-title="测试期间数据环境">备注</a>
 					  </div>
 				  </div>
 				  <div class="control-group">
@@ -174,102 +198,6 @@
 				  <div class="control-group" id="apibox">
 						
 				  </div>
-				  <!-- ==============================
-				  <div class="control-group">
-					<label class="control-label">数据环境：</label>
-					<div class="controls">
-					  <label class="radio inline">
-						<input type="radio" name="restId" id="restId" value="option1" checked>
-						UJI server
-					  </label>
-					  <label class="radio inline">
-						<input type="radio" name="restId" id="restId" value="option2">
-						正式环境
-					  </label>
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label">提交方式：</label>
-					<div class="controls">
-					  <label class="radio inline">
-						<input type="radio" name="sip_http_method" id="sip_http_method" value="option1" checked>
-						POST
-					  </label>
-					  <label class="radio inline">
-						<input type="radio" name="sip_http_method" id="sip_http_method" value="option2">
-						GET
-					  </label>
-					</div>
-				  </div>
-
-				  <div class="control-group">
-					<label class="control-label">Radio buttons</label>
-					<div class="controls">
-					  <label class="radio">
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Option one is this and that&mdash;be sure to include why it's great
-					  </label>
-					  <label class="radio">
-						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-						Option two can is something else and selecting it will deselect option one
-					  </label>
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="optionsCheckbox">Checkbox</label>
-					<div class="controls">
-					  <label class="checkbox">
-						<input type="checkbox" id="optionsCheckbox" value="option1">
-						Option one is this and that&mdash;be sure to include why it's great
-					  </label>
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="select01">Select list</label>
-					<div class="controls">
-					  <select id="select01">
-						<option>something</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					  </select>
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="multiSelect">Multicon-select</label>
-					<div class="controls">
-					  <select multiple="multiple" id="multiSelect">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					  </select>
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="fileInput">File input</label>
-					<div class="controls">
-					  <input class="input-file" id="fileInput" type="file">
-					</div>
-				  </div>
-				  <div class="control-group">
-					<label class="control-label" for="textarea">Textarea</label>
-					<div class="controls">
-					  <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
-					</div>
-				  </div>
-				  
-				  
-				  <div class="control-group">
-					  <label class="control-label" for="format">test</label>
-					  <div class="controls">
-						  <input type="text" class="span2" placeholder="Type something…" name="a">
-						  <span class="help-inline">Associated help text!</span>
-					  </div>
-				  </div>
-				  -->
 
 				  <hr class="soften">
 				  <div class="form-actions">
@@ -299,7 +227,7 @@
 				</div>
 				<div class="getinfo">
 					<div class="control-group">
-						<label class="control-label" for="textarea">Return Info</label>
+						<label class="control-label" for="textarea">Return Info: <a class="editor" href="####" >JSON Editor</a></label>
 						<div class="controls ">
 						  <textarea class="input-xlarge span6" id="resultShow" rows="30" name="resultShow"></textarea>
 						</div>
@@ -310,7 +238,54 @@
 		
       </div>
       <pre class="prettyprint linenums">$('#myModal').modal(options)</pre>
-    </div>  
+      
+      <a data-toggle="modal" href="#myEditer" class="btn btn-primary btn-large">Launch demo modal</a>
+      <div class="modal hide fade" id="myModal">
+		  <div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>提醒信息</h3>
+		  </div>
+		  <div class="modal-body">
+			<p>请选择调试的接口…</p>
+		  </div>
+		  <div class="modal-footer">
+			<a href="#" class="btn btn-primary"  data-dismiss="modal" >确定</a>
+			<!--<a href="#" class="btn btn-primary">Save changes</a>-->
+		  </div>
+		</div>
+		<div class="modal hide fade" id="myLoad">
+		  <div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>接口信息提交中</h3>
+		  </div>
+		  <div class="modal-body">
+			<p>请稍侯…</p>
+			<div class="progress progress-striped
+				 active">
+			  <div class="bar"
+				   style="width: 10%;"></div>
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<!--<a href="#" class="btn btn-primary"  data-dismiss="modal" >确定</a>
+			<a href="#" class="btn btn-primary">Save changes</a>-->
+		  </div>
+		</div>
+		<div class="modal hide" id="myEditer">
+		  <div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>JSON在线编辑器</h3>
+		  </div>
+		  <div class="modal-body">
+			<iframe src="http://www.thomasfrank.se/downloadableJS/JSONeditor_example.html" class="span12" height="560" id="iEditer" name="iEditer" ></iframe>
+		  </div>
+		  <div class="modal-footer">
+			<a href="#" class="btn btn-primary"  data-dismiss="modal" >确定</a>
+			<!--<a href="#" class="btn btn-primary">Save changes</a>-->
+		  </div>
+		</div>
+<a href="#" class="btn btn-danger" rel="popover" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">hover for popover</a>
+  </div>  
 
 <script>
 
@@ -357,7 +332,7 @@ var sip_apiname = {};
 
 			jQuery.each(tempjson,function(){
 				//alert(this.name + "," + this.values);
-				html= html + '<div class="control-group '+ this.classname +'"><label for="format" class="control-label">'+ this.name +'：</label><div class="controls"><input type="text" id="'+ this.name +'" name="'+ this.name +'" placeholder="Type something…" class="span2" value="'+ this.values +'" x-webkit-speech><span class="help-inline">'+ this.desc +'</span></div></div>'
+				html= html + '<div class="control-group '+ this.classname +'"><label for="format" class="control-label">'+ this.name +'：</label><div class="controls"><input type="text" id="'+ this.name +'" name="'+ this.name +'" placeholder="Type something…" class="span2" value="'+ this.values +'"  x-webkit-speech lang="zh-CN"><a href="#" class="help-inline" rel="popover" data-content="'+ this.desc +'/n 默认值为：'+ this.values +'" data-original-title="关于：'+ this.name +'">备注</a></div></div>'
 			});
 			jQuery('#apibox').html(html);
 
@@ -365,6 +340,9 @@ var sip_apiname = {};
 	}
 //提交API 访问
 	function checkForm() {
+		jQuery('#myLoad .bar').css( "width","5%" );
+		jQuery('#myLoad').modal('show');
+
 		var $form = jQuery( "form" ),
 			term = $form.find( 'select[id="sip_apiname"]' ).val(),
 			temptxt = "&" + $form.find( 'textarea[id="temptxt"]' ).val(),
@@ -374,17 +352,27 @@ var sip_apiname = {};
 			paramString = "",
 			url = ApiRoot + term ;
 			
-			if ( sip_apiname == undefined ){
-				postdate = "testToken=20120315&timeStamp=123456&" + temptxt ;
-			}else{
-				jQuery.each(sip_apiname,function(){
-					paramString += this.name + '=' + document.getElementById(this.name).value + '&';
-				});
-				postdate = "testToken=20120315&" + paramString + temptxt ;
-			}
+		jQuery('#myLoad .bar').animate( { width: "30%" } , 1600 );
+
+		if ( term == "") {
+			
+			return false;
+		}
+		
+		if ( sip_apiname == undefined ){
+			
+			postdate = "testToken=20120315&timeStamp=123456&" + temptxt ;
+		}else{
+			jQuery('#myModal .bar').animate( { width: "70%" } , 2200 );
+			jQuery.each(sip_apiname,function(){
+				paramString += this.name + '=' + document.getElementById(this.name).value + '&';
+			});
+			postdate = "testToken=20120315&" + paramString + temptxt ;
+		}
 
 		document.getElementById('resultShow').value ="";
 		document.getElementById('param').value = "post url:" + url + '\n\n' + "postdate:" +postdate;
+		jQuery('#myLoad .bar').animate( { width: "85%" } , 1000 );
 		var request = jQuery.ajax({
 		  type: "POST",
 		  url: url,
@@ -392,10 +380,18 @@ var sip_apiname = {};
 		  
 		});
 		request.done(function(msg) {
+		  jQuery('#myLoad .bar').animate( { width: "100%" } , 700 );
 		  document.getElementById('resultShow').value = msg;
+		  
+			var eventtimes = null;
 
+			eventtimes = setTimeout(function(){
+				jQuery('#myLoad').modal('hide');
+			},3000);
 		});
-		
+			if(eventtimes){
+                    clearTimeout(eventtimes);
+            }
 	}
 
 jQuery(document).ready(function() {
@@ -408,6 +404,22 @@ jQuery(document).ready(function() {
 		callgetApiList();
 	} 
 	prettyPrint();
+	
+	jQuery(".editor").click( function () { 
+		jQuery('#myEditer').modal({
+			backdrop: true,
+			keyboard: true
+		}).css({
+			width: 'auto',
+			height: '580px',
+			'margin-left': function () {
+				return -($(this).width() / 2);
+			}
+		});
+		jQuery(window.frames["iEditer"].document).find("textarea").text='我想变成她一天的一部分';
+	 });
+
+
 });
 </script>
 </body>
