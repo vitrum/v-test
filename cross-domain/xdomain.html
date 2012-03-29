@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>cross-domain demo by WYQ</title>
+</head>
+<body>
+	<div style="width:100%;border:1px solid green;">
+		<h3>this page from :<span id="host"></span></h3>
+		<input type="text" value="" id="data" /><button id="btn" onclick="send();">提交</button>
+	</div>
+	
+	<iframe id="iframeA" src="http://1.qdemo.sinaapp.com/cross-domain/client.html" style="border:1px solid #ff6600;width:100%;height:300px;"></iframe>
+	<script type="text/javascript">
+		document.getElementById('host').innerHTML = location.host;
+		function send(){
+			var val = document.getElementById('data').value;
+			sendMessage(val);
+		}
+		(function(win, doc){
+			var ifr = doc.getElementById('iframeA').contentWindow;
+			var cb = function(json){
+				alert(location.host+" get msg:"+json);
+			};
+			var sendMessage = function(){
+				if(win.postMessage){
+					if (win.addEventListener) {
+		                win.addEventListener("message",function(e){
+						cb.call(win,e.data);
+					},false);
+		            }else if(win.attachEvent) {
+		                win.attachEvent("onmessage",function(e){
+						cb.call(win,e.data);
+					});
+		            }
+					return function(data){
+						ifr.postMessage(data,'*');
+					};
+				}else{
+					var hash = '';
+					
+					setInterval(function(){
+					
+						if (win.name !== hash) {
+							hash = win.name;
+							cb.call(win, hash);
+						}
+					}, 50);
+					return function(data){
+						ifr.name = data;
+					};
+				}
+			};
+			win.sendMessage = sendMessage();
+		})(window, document);
+		
+	
+		
+	</script>
+</body>
+</html>

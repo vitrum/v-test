@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助Bob回家</title>
+<style type="text/css">
+	body{
+		margin-left:0.5cm;
+		margin-right:0.5cm;
+		font-size:12px;
+		font-weight:bold
+		}
+	a{
+		text-decoration:none;
+		margin-right:5px;
+		border:solid #FFF 1px;
+		}
+	a:hover{
+		border:dashed #F00 1px;
+		}
+	
+	.btn{
+		color:#FFF;
+		padding:2px;
+		font-weight:normal;
+		background:#06C;
+		border-width:1px
+		}
+	div{
+		margin-top:10px;
+		cursor:default
+		}
+	button{
+		 border:1px dashed;
+		 background:#CFF
+		}
+	input{
+		width:1cm;
+		height:0.4cm;
+		text-align:right
+		}
+	.lbl{
+		border:solid 1px white;
+		height:0.4cm;
+		width:2cm;
+		text-align:left
+		}
+	#mapTable{
+		border:solid 1px white;
+		border-collapse:collapse;
+		}
+	#mapTable td{
+		height:22px;
+		width:25px;
+		background:#EEE;
+		border:1px solid white;
+		}
+	#logdiv{
+		overflow:auto;
+		height:100%
+		}
+	
+</style>
+<script language="javascript" src="defines.js"></script>
+<script language="javascript" src="BobsMap.js"></script>
+<script language="javascript" src="Genome.js"></script>
+<script language="javascript" src="GABob.js"></script>
+</head>
+
+<body>
+<div align="center">
+<div style="text-align:left">第&nbsp;<label style="color:red" id="generation">0</label>&nbsp;代：</div>
+<table id="mapTable" onclick="changeBlock(event);">
+<script language="javascript">
+	for(var tr = 0; tr < MAP_HEIGHT; tr++){
+		document.write('<tr>');
+		for(var td = 0; td < MAP_WIDTH; td++){
+			document.write('<td id='+ tr + td +'></td>');
+			}
+		document.write('</tr>');
+		}
+</script>
+</table>
+<div>
+<input class="lbl" readonly="readonly" value="杂交率:" /><input id="crossover_rate" type="text" />
+<input class="lbl" readonly="readonly" value="变异率:" /><input id="mutation_rate" type="text" />
+</div>
+<div>
+<input class="lbl" readonly="readonly" value="群体大小:" /><input id="pop_size" type="text" />
+<input class="lbl" readonly="readonly" value="基因组长度:" /><input id="chromo_length" type="text" />
+</div>
+<div>
+定义好的地图:
+<a href="javascript:gaBob.bobsMap.map = MAP_1.clone(); gaBob.bobsMap.render();">[&nbsp;1&nbsp;]</a>
+<a href="javascript:gaBob.bobsMap.map = MAP_2.clone(); gaBob.bobsMap.render();">[&nbsp;2&nbsp;]</a>
+<a href="javascript:gaBob.bobsMap.map = MAP_3.clone(); gaBob.bobsMap.render();">[&nbsp;3&nbsp;]</a>
+<a href="javascript:gaBob.bobsMap.map = MAP_4.clone(); gaBob.bobsMap.render();">[&nbsp;4&nbsp;]</a>
+<a href="javascript:gaBob.bobsMap.map = MAP_5.clone(); gaBob.bobsMap.render();">[&nbsp;5&nbsp;]</a>
+<a class="btn" href="javascript:showConfig();">重置参数</a>
+</div>
+<div><a class="btn" href="javascript:void(0);" id="startLabel">开始</a></div>
+</div>
+<!--
+<div style="background:#ddd; color:black; padding-top:10px; padding-right:10px" align="right"><a style="text-decoration:none" href="javascript:logger.clear();">清空</a></div>
+<div id="logdiv" style="background:#ddd"></div>
+-->
+<script language="javascript" type="text/javascript">
+	//更改地图
+	function changeBlock(e){
+		//alert('01.Event:' + e);
+		//alert('02.e.currentTarget:' + e.currentTarget);//ie undifined
+		//alert('03.e.target:' + e.target);//ie undifined
+		//alert('04.e.relatedTarget:' + e.relatedTarget);//google null;firefox null; ie undifined
+		//alert('04.e.srcElement:' + e.srcElement);//firefox undifined
+		var id = null;
+		if(navigator.userAgent.indexOf('MSIE') != -1){
+			id = new String(e.srcElement.attributes['id'].value);
+		}else{
+			id = new String(e.target.attributes['id'].value);
+		}
+		//var id = new String(e.srcElement.attributes['id'].value);
+		var x = id.substr(0,1);
+		var y = id.substr(1);
+		gaBob.bobsMap.changeBlock(x, y);
+		}
+	/*
+	function Logger(){
+		this.logf = document.getElementById('logdiv');
+		this.out = function(msg){
+			//this.logf.innerHTML = this.logf.innerHTML + msg + '<br />';
+			}
+		this.clear = function(){
+			this.logf.innerHTML = 'OK.<br />';
+			}
+		}
+	*/
+	//logger = new Logger();
+	//logger.out('实例化Bob...');
+	//实例化Bob
+	var gaBob = new GABob(CROSSOVER_RATE, MUTATION_RATE, POP_SIZE, CHROMO_LENGTH, GENE_LENGTH);
+	//显示参数
+	function showConfig(){
+		document.getElementById('crossover_rate').value = CROSSOVER_RATE;
+		document.getElementById('mutation_rate').value = MUTATION_RATE;
+		document.getElementById('pop_size').value = POP_SIZE;
+		document.getElementById('chromo_length').value = CHROMO_LENGTH;
+	}
+	showConfig();
+	function setConfig(){
+		gaBob.crossoverRate = document.getElementById('crossover_rate').value;
+		gaBob.mutationRate = document.getElementById('mutation_rate').value;
+		gaBob.popSize = document.getElementById('pop_size').value;
+		gaBob.chromoLength = document.getElementById('chromo_length').value;
+	}
+	//logger.out('画地图...');
+	gaBob.bobsMap.render();
+	
+	var btn = document.getElementById('startLabel');
+	btn.onclick = function(){
+		//设置参数
+		setConfig();
+		if(btn.innerHTML == '开始新的时代' || btn.innerHTML == '开始'){
+			gaBob.run();
+		}else{
+			btn.innerHTML = '开始新的时代';
+			gaBob.stop();
+			gaBob.generation = 0;
+		}
+	}
+	
+	function BobsLife(){
+		if(gaBob.started()){
+			gaBob.epoch();
+			gaBob.render();
+			}
+	}
+	window.setInterval(BobsLife, 1);
+</script>
+
+</body>
+</html>

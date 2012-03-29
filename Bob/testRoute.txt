@@ -1,0 +1,57 @@
+this.testRoute = function(vecPath){
+			//logger.out('检查路径：' + vecPath);
+			 //返回一个记忆路径的地图
+			var posX = this.startX;
+			var posY = this.startY;
+			var mem = new BobsMap();
+			mem.resetMemory();
+
+			for (var dir=0; dir < vecPath.length; ++dir){
+					var nextDir = vecPath[dir];
+					switch(vecPath[dir]){
+						
+					case 0: //北
+						//检查是否到达边界以确定是否移动
+						if ( ((posY-1) < 0 ) || (this.map[posY-1][posX] == 1) ){
+							break;
+						}else{
+							posY -= 1;
+						}
+						break;
+						
+					case 1: //南
+						if ( ((posY+1) >= this.mapHeight) || (this.map[posY+1][posX] == 1) ){
+							break;
+						}else{
+							posY += 1;
+						}			
+						break;
+						
+					case 2: //东
+						if ( ((posX+1) >= this.mapWidth ) || (this.map[posY][posX+1] == 1) ){
+							break;
+						}else{
+							posX += 1;
+						}			
+						break;
+			
+					case 3: //西
+						if ( ((posX-1) < 0 ) || (this.map[posY][posX-1] == 1) ){
+							break;
+						}else{
+							posX -= 1;
+						}
+						break;
+					}
+					//mark the route in the memory array
+					mem.memory[posY][posX] = 1;
+			
+				}//下一个方向
+			
+				//现在我们知道了Bobs这次旅行的结束点,让我们指定
+				//一个与距入口路程成比例的适应性分数
+				var	diffX = Math.abs(posX - this.EndX);
+				var diffY = Math.abs(posY - this.EndY);
+				//我们加上1确保被除数不会是零。所以当返回1的时候，就得到了一个解。
+				return 1/(diffX + diffY + 1);
+			};
