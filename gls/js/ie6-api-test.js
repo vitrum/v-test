@@ -165,6 +165,21 @@ var apiListUrl = 'api-tools-list.json'
 }( window.jQuery );
 
 
+/*
+ * 
+ * 
+ * 			for(var i = 0;retCnt >0 && i < retCnt; i++)
+				{ 
+				items.push('<li id="product_' + i + '" class="p-'+  info[i].price  +' d-'+ info[i].discount +' b-'+ info[i].brand +'">' + info[i].html + '</li>');
+				allCount = i;
+				};
+				
+			$('<ul/>', {
+				'class': 'list',
+				html: items.join('')
+				}).replaceAll('.productlist .list');
+ * */
+
 
 
 

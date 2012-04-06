@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	  
+	<title>GLS API test for IE6</title>
+	
+	<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://media2.glamour-sales.com.cn/media/fileversioner/css/e5769d605a57a647abf3aeb61ff371c21.0.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="http://media2.glamour-sales.com.cn/media/fileversioner/css/adf9106f19b9ada678e2a781b483461b1.0.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="http://media2.glamour-sales.com.cn/media/fileversioner/css/4ce1b44a89e8bf4c28d3b09f59e8a8441.0.css" media="screen" />
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="css/ie6-api-test.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<table align="right" class="glstable-cost" id="shopping-cart-totals-table">
+			<colgroup><col>
+			<col width="1">
+			</colgroup><tfoot>
+				<tr>
+    <td colspan="1" class="a-right cost-label" style="">
+        <strong>总金额 </strong>
+     </td>
+     <td width="1%" class="a-right" style="">
+        <strong><span class="price">-￥970.00</span></strong>
+    </td>
+</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+    <td colspan="1" class="a-right cost-label" style="">
+        小计    </td>
+     <td width="1%" class="a-right" style="">
+        <span class="price">￥3,370.00</span>    </td>
+</tr>
+<tr>
+    <td class="a-right" style="" colspan="1">
+    	            立减￥400            </td>
+        <td class="a-right" style="">
+                <span class="price">-￥400.00</span>            </td>
+
+</tr>
+			</tbody>
+		</table>
+
+
+<script>
+//price text to int
+	function getPriceValue(text) {
+		text = text.replace(/￥/g, "");
+		text = text.replace(/-/g, "");
+		text = text.replace(/,/g, "");
+		return text;
+	}
+	
+	
+jQuery(document).ready(function() {
+	var priceTxt = jQuery('#shopping-cart-totals-table tfoot span.price').text();
+	alert(Number(getPriceValue(priceTxt)));
+	
+	
+	
+});
+</script>
+<noscript></noscript>
+</body>
+</html>
