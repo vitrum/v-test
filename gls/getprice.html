@@ -58,23 +58,25 @@
 	.cmbpromotionbox .addproduct { position: absolute; width:400px; height:130px; right:0px; text-indent:-9999em; }
 	.cmbpromotionbox .line , .cmbpromotionbox .line .turnon { width:1000px; position: relative; background:url("http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-03-1.gif") no-repeat 0 0;}
 	.cmbpromotionbox .line01 { height:169px;}
+	.cmbpromotionbox .line01 a { display:none;}
 	.cmbpromotionbox .line02 { height:45px; background-position: 0px -169px}
 	.cmbpromotionbox .line03 { height:43px; background-position: 0px -214px}
 	.cmbpromotionbox .line04 { height:45px; background-position: 0px -257px}
 	
-	.cmbpromotionbox  .line01 .turnon { background-position: 0px -304px}
-	.cmbpromotionbox  .line02 .turnon { background-position: 0px -473px}
-	.cmbpromotionbox  .line03 .turnon { background-position: 0px -518px}
-	.cmbpromotionbox  .line04 .turnon { background-position: 0px -561px}
+	.cmbpromotionbox  .line01-on { background-position: 0px -304px}
+	.cmbpromotionbox .line01-on a { display:block;}
+	.cmbpromotionbox  .line02-on { background-position: 0px -473px}
+	.cmbpromotionbox  .line03-on { background-position: 0px -518px}
+	.cmbpromotionbox  .line04-on { background-position: 0px -561px}
 </style>		
 <div class="cartbox">
 	
 	<div class="cmbpromotiontitle"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-02.png" /></div>
 	<div class="cmbpromotionbox">
-		<div class="line line01"><div class="turnon"><a class="addproduct" href="/checkout/cart/add/product/83521" title="加入购物袋" alt="加入购物袋">加入购物袋</a></div></div>
-		<div class="line line02"><div class="turnon"></div></div>
-		<div class="line line03"><div class="turnon"></div></div>
-		<div class="line line04"><div class="turnon"></div></div>
+		<div class="line line01"><a class="addproduct" href="/checkout/cart/add/product/83521" title="加入购物袋" alt="加入购物袋">加入购物袋</a></div>
+		<div class="line line02"></div>
+		<div class="line line03"></div>
+		<div class="line line04"></div>
 	</div>
 </div>
 <script>
@@ -85,25 +87,36 @@
 		text = text.replace(/,/g, "");
 		return text;
 	}
-	
+	function checkPriceLive(num){
+		var price = num;
+		jQuery('.line').removeClass('line01-on').removeClass('line02-on').removeClass('line03-on').removeClass('line04-on');
+		if ( price <= 1199 ){
+			jQuery('.line01').addClass('line01-on');
+		}
+		if ( price >= 1200 && price <= 1799 ){
+			jQuery('.line02').addClass('line02-on');
+		}
+		if ( price >= 1800 && price <= 2399 ){
+			jQuery('.line03').addClass('line03-on');
+		}
+		if ( price >= 2400 ){
+			jQuery('.line04').addClass('line04-on');
+		}
+	}
 	
 jQuery(document).ready(function() {
 	var priceTxt = jQuery('#shopping-cart-totals-table tfoot span.price').text();
-	
+	checkPriceLive(Number(getPriceValue(priceTxt)));
 	jQuery('#newprice').val(Number(getPriceValue(priceTxt)));
 	jQuery('#newprice').change( function() {
 		var newPrice = Number(jQuery('#newprice').val());
-		//alert(newPrice);
 		if (newPrice != ''){
-			if (newPrice < 1199){
-				jQuery('.line').removeClass()
-			 }
+			checkPriceLive(newPrice);
+		}else {
+			newPrice = getPriceValue(priceTxt);
+			checkPriceLive(newPrice);
 		}
-		
-		
 	});
-	
-	
 });
 </script>
 <noscript></noscript>
