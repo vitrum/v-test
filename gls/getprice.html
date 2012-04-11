@@ -19,7 +19,17 @@
 </head>
 
 <body>
-
+<dt>魅力惠贴心提醒您：</dt>			
+<dd >
+* 贴心提示：由于限时抢购的商品库存有限，为了抢到您喜欢的商品，请务必在<span class="red">6小时</span>内完成支付！<br>
+<div class="cmbpromotiontop"><a href="#"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-01.jpg" /></a></div>
+</dd>
+<style>
+.cmbpromotiontop { width:980px; overflow:hidden; }
+.widget-banner { text-align:left}
+.cartbox .cartbox-glsinfo dd { padding:0px}
+</style>
+//id 83521,83520,83519,83518,83517
 <table align="right" class="glstable-cost" id="shopping-cart-totals-table">
 			<colgroup><col>
 			<col width="1">
@@ -54,6 +64,7 @@
 <div class="cmbpromotiontitle"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-01.jpg" /></div>
 		
 <style>
+	.cmbpromotiontitle { height:143px;}
 	.cmbpromotionbox { width:1000px}
 	.cmbpromotionbox .addproduct { position: absolute; width:400px; height:130px; right:0px; text-indent:-9999em; }
 	.cmbpromotionbox .line , .cmbpromotionbox .line .turnon { width:1000px; position: relative; background:url("http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-03-1.gif") no-repeat 0 0;}
@@ -71,7 +82,7 @@
 </style>		
 <div class="cartbox">
 	
-	<div class="cmbpromotiontitle"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-02.png" /></div>
+	<div class="cmbpromotiontitle"><a id="cartmsg" name="cartmsg"></a><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012cmbpromotion/cmdpromotion-02.png" /></div>
 	<div class="cmbpromotionbox">
 		<div class="line line01"><a class="addproduct" href="/checkout/cart/add/product/83521" title="加入购物袋" alt="加入购物袋">加入购物袋</a></div>
 		<div class="line line02"></div>
@@ -104,8 +115,10 @@
 		}
 	}
 	
-jQuery(document).ready(function() {
-	var priceTxt = jQuery('#shopping-cart-totals-table tfoot span.price').text();
+jQuery(document).ready(function($) {
+	var priceTxt = jQuery('#shopping-cart-totals-table tbody tr:first span.price').text();
+
+	
 	checkPriceLive(Number(getPriceValue(priceTxt)));
 	jQuery('#newprice').val(Number(getPriceValue(priceTxt)));
 	jQuery('#newprice').change( function() {
@@ -117,6 +130,12 @@ jQuery(document).ready(function() {
 			checkPriceLive(newPrice);
 		}
 	});
+	jQuery('.cmbpromotiontop a').click( function(){
+		$body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');// 这行是 Opera 的补丁, 少了它 Opera 是直接用跳的而且画面闪烁 by willin
+		$body.animate({scrollTop: jQuery('.cmbpromotiontitle').offset().top}, 1000);
+	})
+	
+	
 });
 </script>
 <noscript></noscript>
