@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	  
+	<title>get all link</title>
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+</head>
+<body>
+<textarea class="input-xlarge span11" id="resultShow" rows="30" name="resultShow"></textarea>	
+<button type="submit" class="btn btn-primary span2" >get </button>
+
+<script>
+
+jQuery(document).ready(function() {
+	jQuery(".btn").click( function () { 
+
+		var allLink = '';
+		jQuery("a").each(function(i){
+			allLink = allLink + '\nhttp://www.neimanmarcus.com' + jQuery(this).attr("href");
+		})
+
+		jQuery('#resultShow').html(allLink);
+	});
+});
+</script>
+
+<div class="needbox span11">
+
+
+
+</div><!-- needbox end -->
+</body>
+</html>
