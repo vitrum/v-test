@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	  
+	<title>vitrum/v-test @ GitHub GLS API test</title>
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="js/bootstrap-widgets.js"></script>
+	<!--
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	-->
+    
+    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>
+	
+
+	<style>
+      .input-xlarge { font-size: 16px;}
+      #printEncode .pun { color:red;}
+	</style>
+</head>
+
+<body >
+	<div class="container-fluid">
+		<div class="well">
+			<div class="getinfo">
+				<div class="control-group">
+					<label class="control-label" for="textarea">请输入需要编码的信息: </label>
+					<div class="controls ">
+					  <textarea class="input-xlarge span10" id="inputEncode" rows="10" name="inputEncode"></textarea>
+					  <a href="#" class="btn btn-primary"  data-dismiss="modal" >提交</a>
+					  <pre class="prettyprint linenums" id="printEncode">返回信息</pre>
+					</div>
+				  </div>
+			</div>
+		</div>
+	</div> 
+
+<script>
+
+
+jQuery(document).ready(function() {
+	//alert("jquery");
+	jQuery(".btn").click( function () { 
+		//alert("jquery");
+		var newprint = jQuery("#inputEncode").val()
+		, newprint = encodeURIComponent(newprint);
+		//alert(newprint);
+		jQuery("#printEncode .pun").html(newprint);
+	});
+});
+</script>
+</body>
+</html>
