@@ -2,9 +2,9 @@
 {
 "rootNodes":[
 {
-"pageName":"Greenzeeta Vote",
+"pageName":"Greenzetta Vote",
 "type":"Wireframe",
-"url":"Greenzeeta_Vote.html",
+"url":"Greenzetta_Vote.html",
 "children":[
 {
 "pageName":"blog",

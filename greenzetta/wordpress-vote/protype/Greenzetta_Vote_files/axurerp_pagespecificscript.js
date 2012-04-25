@@ -1,11 +1,11 @@
 ﻿
-var PageName = 'blog';
-var PageId = 'c5bf8ee0ac114f0e9c2632e232ac1146'
-var PageUrl = 'blog.html'
-document.title = 'blog';
+var PageName = 'Greenzetta Vote';
+var PageId = '30ce964cbd6547ae931e1aa08936040f'
+var PageUrl = 'Greenzetta_Vote.html'
+document.title = 'Greenzetta Vote';
 var PageNotes = 
 {
-"pageName":"blog",
+"pageName":"Greenzetta Vote",
 "showNotesNames":"False"}
 var $OnLoadVariable = '';
 
