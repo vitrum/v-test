@@ -88,11 +88,7 @@ var apiListUrl = 'api-tools-list.json'
 				   case 'product/detail': 
 					 
 					 var tempjson = JSON;
-					     , 
-					 
-					 
-					 
-					 
+
 					 break 
 				   default: 
 					 info = $(info).sort(sortPrice);

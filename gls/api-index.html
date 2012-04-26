@@ -63,17 +63,15 @@
           <a class="brand" href="####">GLS API Tools</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active">
-                <a href="####" class="encode">encode URI</a>
-              </li>
+
               <li class="divider-vertical"></li>
-              <li class="">
+              <li class="active">
                 <a href="####" class="doc">API Document</a>
               </li>
 
               <li class="divider-vertical"></li>
               <li class="">
-                <a href="####" class="testacc">Test Accounts</a>
+                <a href="####" class="encode">encode URI</a>
               </li>
               <li class="">
                 <a href="####" class="code">Code Examples</a>
@@ -108,7 +106,7 @@
 				  <div class="control-group">
 					<label class="control-label" for="format">返回结果：</label>
 					<div class="controls">
-					  <select id="format" class="span2">
+					  <select id="format" class="">
 						<option value="json" select="select">json</option>
 						<option value="xml">XML</option>
 					  </select>
@@ -134,7 +132,7 @@
 				  <div class="control-group">
 					<label class="control-label" for="sip_apiname">API 名称：</label>
 					<div class="controls">
-					  <select id="sip_apiname" class="span2" onchange="callgetParamListByApi(this);">.
+					  <select id="sip_apiname" class="" onchange="callgetParamListByApi(this);">.
 						<option value="">请选择接口</option>
 						<option value="index/version">1.1 版本检测</option>
 						<option value="index/loading">1.2 获取加载页图片</option>
@@ -188,7 +186,7 @@
 				  <div class="control-group">
 					  <label for="format" class="control-label">测试期间数据环境：</label>
 					  <div class="controls">
-						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="span2" value="www"  x-webkit-speech lang="zh-CN" >
+						  <input type="text" id="restIdtemp" name="restIdtemp" placeholder="Type something…" class="" value="www"  x-webkit-speech lang="zh-CN" >
 						  <a href="#" class="help-inline" rel="popover" data-content="数据环境可以选：uji ,www, local 等" data-original-title="测试期间数据环境">备注</a>
 					  </div>
 				  </div>
@@ -201,7 +199,7 @@
 
 				  <hr class="soften">
 				  <div class="form-actions">
-					<button type="submit" class="btn btn-primary span2" onclick="checkForm();return false;">测试</button>
+					<button type="submit" class="btn btn-primary " onclick="checkForm();return false;">测试</button>
 					<!--<a href="####" class="btn span1" id="loadapilist" onclick="callgetApiList();return false;">Load API</a>-->
 				  </div>
   				  <hr class="soften">
@@ -306,7 +304,7 @@
 			<h3>URL Encode</h3>
 		  </div>
 		  <div class="modal-body">
-			<iframe src="api-index-encode.html" class="span12" height="490" id="iCode" name="iCode" ></iframe>
+			<iframe src="api-index-encode.html" class="span12" height="490" id="iEncode" name="iEncode" ></iframe>
 		  </div>
 		  <div class="modal-footer">
 			<a href="#" class="btn btn-primary"  data-dismiss="modal" >关闭</a>
@@ -362,7 +360,7 @@ var sip_apiname = {};
 
 			jQuery.each(tempjson,function(){
 				//alert(this.name + "," + this.values);
-				html= html + '<div class="control-group '+ this.classname +'"><label for="format" class="control-label">'+ this.name +'：</label><div class="controls"><input type="text" id="'+ this.name +'" name="'+ this.name +'" placeholder="Type something…" class="span2" value="'+ this.values +'"  x-webkit-speech lang="zh-CN"><a href="#" class="help-inline" rel="popover" data-content="'+ this.desc +'<br /> 默认值为：'+ this.values +'" data-original-title="关于：'+ this.name +'"> ? </a></div></div>'
+				html= html + '<div class="control-group '+ this.classname +'"><label for="format" class="control-label">'+ this.name +'：</label><div class="controls"><input type="text" id="'+ this.name +'" name="'+ this.name +'" placeholder="Type something…" class="" value="'+ this.values +'"  x-webkit-speech lang="zh-CN"><a href="#" class="help-inline" rel="popover" data-content="'+ this.desc +'<br /> 默认值为：'+ this.values +'" data-original-title="关于：'+ this.name +'"> ? </a></div></div>'
 			});
 			jQuery('#apibox').html(html);
 			eventtimes = setTimeout(function(){

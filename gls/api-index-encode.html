@@ -12,7 +12,7 @@
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+
 	<script type="text/javascript" src="js/bootstrap-widgets.js"></script>
 	<!--
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
@@ -41,7 +41,7 @@
 
 	<style>
       .input-xlarge { font-size: 16px;}
-      #printEncode .pun { color:red;}
+      #printEncode { color:red;}
 	</style>
 </head>
 
@@ -50,12 +50,25 @@
 		<div class="well">
 			<div class="getinfo">
 				<div class="control-group">
+					<label class="control-label" for="format">OPEN View：</label>
+					<div class="controls">
+					  <select id="format" class="span2">
+						<option value="1" select="select">需要</option>
+						<option value="0">不需要</option>
+					  </select>
+					</div>
+				  </div>
+				<div class="control-group">
 					<label class="control-label" for="textarea">请输入需要编码的信息: </label>
 					<div class="controls ">
-					  <textarea class="input-xlarge span10" id="inputEncode" rows="10" name="inputEncode"></textarea>
+					  <textarea class="input-xlarge span10" id="inputEncode" rows="3" name="inputEncode"></textarea>
 					  <a href="#" class="btn btn-primary"  data-dismiss="modal" >提交</a>
-					  <pre class="prettyprint linenums" id="printEncode">返回信息</pre>
 					</div>
+					<label class="control-label" for="textarea">返回信息: </label>
+					<div class="controls ">
+						<pre id="printEncode">返回信息</pre>
+					</div>
+
 				  </div>
 			</div>
 		</div>
@@ -66,12 +79,15 @@
 
 jQuery(document).ready(function() {
 	//alert("jquery");
+	var openView = "http://www.glamour-sales.com.cn/glscustomer/preview?redirect=";
 	jQuery(".btn").click( function () { 
 		//alert("jquery");
 		var newprint = jQuery("#inputEncode").val()
-		, newprint = encodeURIComponent(newprint);
+		, newprint = encodeURIComponent(newprint)
+		, openNeed = jQuery("#format").val();
 		//alert(newprint);
-		jQuery("#printEncode .pun").html(newprint);
+		if ( openNeed == "1") { newprint = openView + newprint;}
+		jQuery("#printEncode").html(newprint);
 	});
 });
 </script>
