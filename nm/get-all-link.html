@@ -23,8 +23,11 @@ jQuery(document).ready(function() {
 	jQuery(".btn").click( function () { 
 
 		var allLink = '';
-		jQuery("a").each(function(i){
-			allLink = allLink + '\nhttp://www.neimanmarcus.com' + jQuery(this).attr("href");
+		jQuery("img").each(function(i){
+			//get link url
+			//allLink = allLink + '\nhttp://www.neimanmarcus.com' + jQuery(this).attr("href");
+			//get image src
+			allLink = allLink + '\n' + jQuery(this).attr("src");
 		})
 
 		jQuery('#resultShow').html(allLink);
@@ -34,7 +37,7 @@ jQuery(document).ready(function() {
 
 <div class="needbox span11">
 
-
+<img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_03_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_05_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_01_10.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_04_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_07_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_06_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_08_1.jpg" /></li><li><img width="640" src="http://media2.glamour-sales.com.cn/media/catalog/category/nine_banner_02_2.jpg" /></li>
 
 </div><!-- needbox end -->
 </body>

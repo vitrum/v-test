@@ -40,6 +40,10 @@
 	
 
 	<style>
+      body {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
       .input-xlarge { font-size: 16px;}
       #printEncode { color:red;}
 	</style>
@@ -57,6 +61,7 @@
 						<option value="0">不需要</option>
 					  </select>
 					</div>
+					<a class="gaurl" href="http://support.google.com/googleanalytics/bin/answer.py?hl=zh-Hans&answer=55578" >工具网址构建器</a></label>
 				  </div>
 				<div class="control-group">
 					<label class="control-label" for="textarea">请输入需要编码的信息: </label>
@@ -75,18 +80,13 @@
 	</div> 
 
 <script>
-
-
 jQuery(document).ready(function() {
-	//alert("jquery");
 	var openView = "http://www.glamour-sales.com.cn/glscustomer/preview?redirect=";
 	jQuery(".btn").click( function () { 
-		//alert("jquery");
 		var newprint = jQuery("#inputEncode").val()
 		, newprint = encodeURIComponent(newprint)
 		, openNeed = jQuery("#format").val();
-		//alert(newprint);
-		if ( openNeed == "1") { newprint = openView + newprint;}
+		if ( openNeed == "1" ) { newprint = openView + newprint;}
 		jQuery("#printEncode").html(newprint);
 	});
 });
