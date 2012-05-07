@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+.test { color: #000; padding: .5em; border: 1px solid #444; }
+.active { color: #900;}
+.inside { background-color: aqua; }
+</style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/ontest.js"></script>
+</head>
+<body>
+  <div class="test">test div</div>
+<script>
+jQuery(document).ready(function() {
+	$("div.test").ontest('click');
+});
+</script>
+
+</body>
+</html>
