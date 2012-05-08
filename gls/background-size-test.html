@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="user-scalable=no, width=device-width"  />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>vitrum/v-test @ background size test</title>
+  <style>
+.test { 
+	background:url("http://ww3.sinaimg.cn/large/72e8c811tw1dsqnijuqamj.jpg") no-repeat; 
+	width:300px; 
+	height:400px;
+	/*-moz-background-size:cover;
+	background-size:cover;*/
+	background-size:100% 100%;
+	display:block;
+	float:left;
+}
+/*.test:hover { width:400px; height:500px; background-size:auto;}*/
+.test p { margin:20px; padding:8px; background:#ddd; opacity: 0.7;	-moz-opacity: 0.7;	filter:alpha(opacity=70); font-size:24px; line-height:32px;}
+.transform1-2 {
+	-webkit-transform: scale(0.5); /* for Chrome || Safari */
+	-moz-transform: scale(0.5); /* for Firefox */
+	-ms-transform: scale(0.5); /* for IE */
+	-o-transform: scale(0.5); /* for Opera */
+}
+.transform2-3 {
+	-webkit-transform: scale(0.66); /* for Chrome || Safari */
+	-moz-transform: scale(0.66); /* for Firefox */
+	-ms-transform: scale(0.66); /* for IE */
+	-o-transform: scale(0.66); /* for Opera */
+}
+.transform2-1 {
+	-webkit-transform: scale(0.8); /* for Chrome || Safari */
+	-moz-transform: scale(0.8); /* for Firefox */
+	-ms-transform: scale(0.8); /* for IE */
+	-o-transform: scale(0.8); /* for Opera */
+}
+/*== clear fix ==*/
+.clearfix:after { content:"."; display:block; height:0; font-size:0; clear:both; visibility:hidden;}
+.clearfix {  *zoom: 1;  zoom:1; overflow:hidden; line-height:0px; height:0px; font-size:0; clear:both;}
+
+.size2 { width:415px; height:579px; -moz-background-size:cover;
+	background-size:cover;}
+.size3 { width:660px; height:520px; }
+.size4 { width:360px; height:360px; }
+.size5 { width:900px; height:1220px; }
+</style>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</head>
+<body>
+  <div class="test"><p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test transform1-2"><p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test transform2-3"><p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test transform2-1 "><p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test size2"> size2<p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test size3"> size3<p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test size4"> size4<p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+  <div class="test size5"> size5<p>到夏天了，校园里的情况基本是：女生穿衣夜店化，男生穿衣民工化。。。 妹子多的学校夏天逛学校跟进窑子似的，汉子多的学校夏天逛学校逛就跟进男澡堂一样一样的！</p></div>
+
+<script>
+jQuery(document).ready(function() {
+	$(".test").on('click', function() {
+		var newWidth = $(this).width() + 40
+		, newHeight = $(this).height() + 40;
+		$(this).css('width', newWidth+'px').css('height', newHeight+'px');
+		return false;
+	});
+});
+</script>
+</body>
+</html>
