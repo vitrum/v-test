@@ -70,6 +70,9 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 .nmrulebox h4 { line-height:20px}
 .nmrulebox p { padding:8px 14px;}
 
+
+.nm-custom-video .fancybox-skin { background:#000; box-shadow: none;}
+
 .hide { display:none;}
 </style>
 
@@ -85,14 +88,15 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 		<a href="####" title="新浪微博" class="weibo">weibo</a>
 	</div>
 	<div class="nm-main">
-
+<!--
 		<div id="video-container1" style="display:none">
 
 						<div class="popflvplayer">
 							<a
-								 href="http://media2.glamour-sales.com.cn/media/catalog/category/01_NeimanMarcus_SUBTITLE_V4_H264.f4v"
+								 href="http://www.glamour-sales.com.cn/catalog/category/video/id/2320/?keepThis=true&TB_iframe=true&height=418&width=700"
+								 data-ref="http://media2.glamour-sales.com.cn/media/catalog/category/01_NeimanMarcus_SUBTITLE_V4_H264.f4v"
 								 style="display:block;width:580px;height:324px"
-								 id="gls_flash_video1">
+								 id="gls_flash_video1" >
 							</a>
 
 						</div>
@@ -102,17 +106,19 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 			
 						<div class="popflvplayer">
 							<a
-								 href="http://admin.glamour-sales.com.cn/media/catalog/category/02_BergdorfGoodman_SUBTITLE_V4_H264.f4v"
+								href="http://www.glamour-sales.com.cn/catalog/category/video/id/2320/?keepThis=true&TB_iframe=true&height=418&width=700"
+								 data-ref="http://admin.glamour-sales.com.cn/media/catalog/category/02_BergdorfGoodman_SUBTITLE_V4_H264.f4v"
 								 style="display:block;width:580px;height:324px"
-								 id="gls_flash_video2">
+								 id="gls_flash_video2"  class="fancyboxnmvideo">
 							</a>
 
 						</div>
 
 		</div>
+-->
 		<div id="video-nav">
-			<a class="thickbox" id="video1" href="#TB_inline?width=620&height=370&inlineId=video-container1&keepThis=true">PLAY</a>
-			<a class="thickbox" id="video2" href="#TB_inline?width=620&height=370&inlineId=video-container2&keepThis=true">PLAY</a>
+			<a class="fancyboxnmvideo" id="video1" href="http://www.glamour-sales.com.cn/nm-teaser/video1.html">PLAY</a>
+			<a class="fancyboxnmvideo" id="video2" href="http://www.glamour-sales.com.cn/nm-teaser/video2.html">PLAY</a>
 		</div>
 		<div class="nmteaserform">
 			<form  name="fm" action="?action=save" method="post">
@@ -164,7 +170,7 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 jQuery(document).ready(function(){
 	
 	emailPattern 	 	= /^\s*[\w-]+(\.[\w-]+)*@([\w-]+\.)+[A-Za-z]{2,7}\s*$/;
-
+/*
 	flowplayer("gls_flash_video1", {src:"http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/images/product/flowplayer-3.2.7.swf", wmode: 'transparent'});
 	flowplayer("gls_flash_video2", {src:"http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/images/product/flowplayer-3.2.7.swf", wmode: 'transparent'});
 	jQuery('#TB_closeWindowButton').click(function(e){
@@ -172,6 +178,7 @@ jQuery(document).ready(function(){
 			this.stop();
 		});
 	});
+*/
 	jQuery("a.addmore").click(function(e){
 		e.preventDefault();
 		var inputNb = jQuery(".formline").size()
@@ -217,6 +224,7 @@ jQuery(document).ready(function(){
 		return false;
 	});
 	var shareURL = 'http://www.glamour-sales.com.cn/teaser2.html';
+	shareURL = window.location.href;
 	jQuery('.snsnav .weibo').click(function(e) {
 		e.preventDefault();
 		window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(shareURL) + '&title='  + encodeURIComponent('美国Neiman Marcus Group中国网站约你在今年秋天见面！留下你的邮箱，获取全球最热品牌及其当季新品，品牌背后的故事等最新时尚资讯，还有机会获得价值人民币5000元的购物券。详情点击') + '&pic=' + encodeURIComponent('http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-bg2.jpg') /*+ '&ralateUid=1722407475'*/);
@@ -236,6 +244,19 @@ jQuery(document).ready(function(){
 				type : 'hide'
 			}
 		}
+	});
+
+	jQuery('.fancyboxnmvideo').fancybox({
+		'wrapCSS'    : 'nm-custom-video',
+		'width' : 640,
+		'height' : 360,
+		'padding': 14,
+		'scrolling' : 'no',
+		'overlayShow' : false,
+			'autoScale' : false,
+			'transitionIn' : 'none',
+			'transitionOut' : 'none',
+		'type'	: 'iframe' //tweek the other, do not change this;
 	});
 	
 /*
