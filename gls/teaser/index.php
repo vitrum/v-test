@@ -53,13 +53,9 @@ if ($_GET['action'] == 'save') {
 <html>
 <head>
 	<meta charset='utf-8'>
-<title>魅力惠 亚洲顶尖奢侈品会员制购物社区  600个国际品牌官方合作伙伴</title>
+	<title>这个秋天，和 Neiman Marcus Group 有个约会</title>
+	<meta name="description" content="这个秋天，和 Neiman Marcus Group 有个约会" />
 
-<meta name="description" content="魅力惠 亚洲顶尖奢侈品会员制购物社区  600个国际品牌官方合作伙伴" />
-<meta name="keywords" content="glamour sales china, glamour sales, glamoursales, glamoursales china, meilihui， online outlet, outlet china, luxury discount, private sales, private sales china, online luxury, online luxury china,魅力惠，魅力会，奢侈品会员制购物，线上特卖，品牌折扣，奢侈品特卖，名品折扣，限时特卖" />
-<meta name="robots" content="INDEX,FOLLOW" />
-<link rel="icon" href="http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 //<![CDATA[
     var BLANK_URL = 'http://media2.glamour-sales.com.cn/js/blank.html';
@@ -77,14 +73,16 @@ if ($_GET['action'] == 'save') {
 
 
 <style>
-body {background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-bg2.jpg) center top no-repeat; margin:0 }
+body {background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/bg3.png) center top no-repeat; margin:0 }
 p {padding:0; margin:0}
 .nm-main {height:1042px; position:relative; width:960px; margin:auto;overflow:hidden}
 #video-container{ width:580px; height:324px; float:left; overflow:hidden}
-#video-nav { margin-top:202px; padding-left:207px; width:864px; position:relative; height:320px}
-#video-nav a {width:247px; height:139px; display:block; float:left; text-indent:-999em; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/button.jpg) 0 -139px no-repeat}
+#video-nav { margin:202px auto 0; padding; width:566px; position:relative; height:320px; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/videobg.jpg) center top no-repeat; }
+
+#video-nav a { margin:4px 0 0 12px ; width:247px; height:139px; display:block; float:left; text-indent:-999em; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/button.jpg) 0 -139px no-repeat}
+*html #video-nav a { margin-left:6px;}
 #video-nav #video1:hover{background-position:0 0;}
-#video-nav #video2{background-position: -247px -139px; margin-left:50px; }
+#video-nav #video2 {background-position: -247px -139px; margin-left:50px; }
 #video-nav #video2:hover{background-position: -247px 0}
 
 .popflvplayer {background:#111;  padding:10px; margin:10px}	
@@ -111,10 +109,10 @@ p {padding:0; margin:0}
     width:500px;
     }
 .submitbox { width:90px; height:30px; background:#ca403e; position:absolute; right:8px; top:8px; }
-a.submit {  background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423//nm-teaser-form-bg.gif) -523px -8px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em; }
+a.submit {  background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-form-bg.gif) -523px -8px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em; }
 
 .addmorebox { width:90px; height:30px; position:absolute; }
-a.addmore { background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423//nm-teaser-form-bg.gif) 0 -48px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em;}
+a.addmore { background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-form-bg.gif) 0 -48px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em;}
 
 
 
