@@ -1,5 +1,5 @@
 <?php
-if ($_GET['action'] == 'save') {
+if ($_POST['myEmail']) {
 	$db = mysql_connect("localhost", "root", "123456") or die("fail");
 
 	mysql_select_db('emailtest');
@@ -172,7 +172,7 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 			<a class="fancyboxnmvideo" id="video2" href="http://www.glamour-sales.com.cn/nm-teaser/video2.html">PLAY</a>
 		</div>
 		<div class="nmteaserform">
-			<form  name="fm" action="?action=save" method="post">
+			<form  name="fm" action="" method="post">
 			<div class="formbox">
 				<p id="line1" class="formline"><input name="myEmail" type=”text“ id="email_1" title="Email" value="" class="required-entry  validate-email" type="text" size="64"  maxlength="64" placeholder="请输入e-mail地址" /></p>
 				<p id="line1" class="formline hide"><input name="friendEmail1" type=”text“ id="email_2" title="Email" value="" class="required-entry  validate-email" type="text" size="64"  maxlength="64" placeholder="请输入e-mail地址" /></p>

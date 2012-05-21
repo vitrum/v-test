@@ -1,8 +1,8 @@
-<?php
-if ($_GET['action'] == 'save') {
-	$db = mysql_connect("localhost", "root", "123456") or die("fail");
+﻿<?php
+if ($_POST['myEmail']) {
+	$db = mysql_connect("localhost", "root", "shikema0514") or die("fail");
 
-	mysql_select_db('emailtest');
+	mysql_select_db('test');
 
 
     if($_POST['myEmail']!='' && preg_match("/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/",$_POST['myEmail'])==true){
@@ -53,21 +53,17 @@ if ($_GET['action'] == 'save') {
 <html>
 <head>
 	<meta charset='utf-8'>
-<title>魅力惠 亚洲顶尖奢侈品会员制购物社区  600个国际品牌官方合作伙伴</title>
+	<title>这个秋天，和 Neiman Marcus Group 有个约会</title>
+	<meta name="description" content="这个秋天，和 Neiman Marcus Group 有个约会" />
 
-<meta name="description" content="魅力惠 亚洲顶尖奢侈品会员制购物社区  600个国际品牌官方合作伙伴" />
-<meta name="keywords" content="glamour sales china, glamour sales, glamoursales, glamoursales china, meilihui， online outlet, outlet china, luxury discount, private sales, private sales china, online luxury, online luxury china,魅力惠，魅力会，奢侈品会员制购物，线上特卖，品牌折扣，奢侈品特卖，名品折扣，限时特卖" />
-<meta name="robots" content="INDEX,FOLLOW" />
-<link rel="icon" href="http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 //<![CDATA[
     var BLANK_URL = 'http://media2.glamour-sales.com.cn/js/blank.html';
     var BLANK_IMG = 'http://media2.glamour-sales.com.cn/js/spacer.gif';
     var SKIN_URL = 'http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/';
-    
+
     var _gaq = _gaq || [];
-    
+
 //]]>
 </script>
 
@@ -77,17 +73,19 @@ if ($_GET['action'] == 'save') {
 
 
 <style>
-body {background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-bg2.jpg) center top no-repeat; margin:0 }
+body {background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/bg3.png) center top no-repeat; margin:0 }
 p {padding:0; margin:0}
 .nm-main {height:1042px; position:relative; width:960px; margin:auto;overflow:hidden}
 #video-container{ width:580px; height:324px; float:left; overflow:hidden}
-#video-nav { margin-top:202px; padding-left:207px; width:864px; position:relative; height:320px}
-#video-nav a {width:247px; height:139px; display:block; float:left; text-indent:-999em; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/button.jpg) 0 -139px no-repeat}
+#video-nav { margin:202px auto 0; padding; width:566px; position:relative; height:320px; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/videobg.jpg) center top no-repeat; }
+
+#video-nav a { margin:4px 0 0 12px ; width:247px; height:139px; display:block; float:left; text-indent:-999em; background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/button.jpg) 0 -139px no-repeat}
+*html #video-nav a { margin-left:6px;}
 #video-nav #video1:hover{background-position:0 0;}
-#video-nav #video2{background-position: -247px -139px; margin-left:50px; }
+#video-nav #video2 {background-position: -247px -139px; margin-left:50px; }
 #video-nav #video2:hover{background-position: -247px 0}
 
-.popflvplayer {background:#111;  padding:10px; margin:10px}	
+.popflvplayer {background:#111;  padding:10px; margin:10px}
 .teaserbox { width:1000px; margin:0 auto; position:relative;}
 .snsnav { position:absolute; right:-2px; width:120px; height:26px; z-index:999;}
 .snsnav a { display:block; float:left; width:60px; height:36px; text-indent:-999em;}
@@ -111,10 +109,10 @@ p {padding:0; margin:0}
     width:500px;
     }
 .submitbox { width:90px; height:30px; background:#ca403e; position:absolute; right:8px; top:8px; }
-a.submit {  background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423//nm-teaser-form-bg.gif) -523px -8px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em; }
+a.submit {  background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-form-bg.gif) -523px -8px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em; }
 
 .addmorebox { width:90px; height:30px; position:absolute; }
-a.addmore { background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423//nm-teaser-form-bg.gif) 0 -48px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em;}
+a.addmore { background:url(http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-form-bg.gif) 0 -48px no-repeat; width:90px; height:30px; display:block; float:left;text-indent:-999em;}
 
 
 
@@ -153,10 +151,10 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 							</a>
 
 						</div>
-					
-		</div>	
+
+		</div>
 		<div id="video-container2" style="display:none">
-			
+
 						<div class="popflvplayer">
 							<a
 								href="http://www.glamour-sales.com.cn/catalog/category/video/id/2320/?keepThis=true&TB_iframe=true&height=418&width=700"
@@ -174,7 +172,7 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 			<a class="fancyboxnmvideo" id="video2" href="http://www.glamour-sales.com.cn/nm-teaser/video2.html">PLAY</a>
 		</div>
 		<div class="nmteaserform">
-			<form  name="fm" action="?action=save" method="post">
+			<form  name="fm" action="" method="post">
 			<div class="formbox">
 				<p id="line1" class="formline"><input name="myEmail" type=”text“ id="email_1" title="Email" value="" class="required-entry  validate-email" type="text" size="64"  maxlength="64" placeholder="请输入e-mail地址" /></p>
 				<p id="line1" class="formline hide"><input name="friendEmail1" type=”text“ id="email_2" title="Email" value="" class="required-entry  validate-email" type="text" size="64"  maxlength="64" placeholder="请输入e-mail地址" /></p>
@@ -213,7 +211,7 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 		<p>官其他条款：对于操作或传送方面的任何失误、疏忽、中断、删除、过失、延迟，通信线路故障、盗窃或破坏，或非法参加或更改报名，主办方不承担任何责任。对于电话网络或电话线路、计算机在线系统、服务器的任何问题或技术故障，或供应商、计算机设备、软件，因技术问题、人为失误或英特网或任何网络的信号拥挤导致或上述各种原因共同导致主办方未能收到的任何邮件或报名（包括与参与本次抽奖或下载本次抽奖的任何资料相关的，或由此给参与者或其他任何人的电脑造成的任何伤害或损失），主办方亦不承担责任。如果因电脑病毒、故障、贿赂、非法入侵、诈骗、技术故障导致本次抽奖无法按原定计划进行，或因其他任何超出主办方控制范围的原因对本次抽奖的管理、安全、公平、公正或正常实施造成破坏或影响，主办方有权自行取消任何有贿赂行为个人的报名资格，和/或取消、终止、变更或暂停本次抽奖。</p>
 		<p>官取消抽奖的权利: 主办方有权自行取消、终止、变更或暂停本次抽奖。</p>
 		<p>官法律选择：与本官方规则的订立、效力、解释和可执行性相关的一切纠纷和问题，或本次抽奖涉及的参与者和主办方的权利和义务，均受中国实体法的管辖和解释（但不考虑法律冲突）。</p>
-		
+
 	</div>
 <script type="text/javascript" src="http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/js/flowplayer-3.2.6.min.js"></script>
 
@@ -221,7 +219,7 @@ a.fancybox {  display:block; width:200px; height:30px; text-indent:-999em;}
 //<![CDATA[
 
 jQuery(document).ready(function(){
-	
+
 	emailPattern 	 	= /^\s*[\w-]+(\.[\w-]+)*@([\w-]+\.)+[A-Za-z]{2,7}\s*$/;
 /*
 	flowplayer("gls_flash_video1", {src:"http://media2.glamour-sales.com.cn/skin/frontend/glamour/default/images/product/flowplayer-3.2.7.swf", wmode: 'transparent'});
@@ -243,8 +241,8 @@ jQuery(document).ready(function(){
 		jQuery(".submitbox").offset({top: newSubmitOffset});
 		if ( inputNb <= activeNb +1){
 			jQuery("div.addmorebox").addClass("hide");
-		} 
-		_gaq.push(['_trackEvent','Teaser_Mail_Add','Click']); 
+		}
+		_gaq.push(['_trackEvent','Teaser_Mail_Add','Click']);
 		return false;
 	});
 
@@ -259,25 +257,25 @@ jQuery(document).ready(function(){
 		, activeNb = jQuery("p.formline:visible").size();
 		if (email1 =="") { alert("请输入您的邮件地址"); return ;}
 		if( !emailPattern.test( email1 ) ){ alert("邮件地址格式不正确");return ;}
-		if ( activeNb > 1 ){
-			if (email2 =="") { alert("请输入您的邮件地址"); return ;}
+		if ( activeNb > 1 && email2 !=""){
+			//if (email2 =="") { alert("请输入您的邮件地址"); return ;}
 			if( !emailPattern.test( email2 ) ){ alert("邮件地址格式不正确");return ;}
 		}
-		if ( activeNb > 2 ){
-			if (email3 =="") { alert("请输入您的邮件地址"); return ;}
+		if ( activeNb > 2 && email3 !=""){
+			//if (email3 =="") { alert("请输入您的邮件地址"); return ;}
 			if( !emailPattern.test( email3 ) ){ alert("邮件地址格式不正确");return ;}
 		}
-		if ( activeNb > 3 ){
-			if (email4 =="") { alert("请输入您的邮件地址"); return ;}
+		if ( activeNb > 3 && email4 !=""){
+			//if (email4 =="") { alert("请输入您的邮件地址"); return ;}
 			if( !emailPattern.test( email4 ) ){ alert("邮件地址格式不正确");return ;}
 		}
-		if ( activeNb > 4 ){
-			if (email5 =="") { alert("请输入您的邮件地址"); return ;}
+		if ( activeNb > 4 && email5 !=""){
+			//if (email5 =="") { alert("请输入您的邮件地址"); return ;}
 			if( !emailPattern.test( email5 ) ){ alert("邮件地址格式不正确");return ;}
 		}
 		//alert("submit!");
 		jQuery("form").submit();
-		_gaq.push(['_trackEvent','Teaser_Submit_Form','Click']); 
+		_gaq.push(['_trackEvent','Teaser_Submit_Form','Click']);
 		return false;
 	});
 	var shareURL = 'http://www.glamour-sales.com.cn/teaser2.html';
@@ -285,14 +283,14 @@ jQuery(document).ready(function(){
 	jQuery('.snsnav .weibo').click(function(e) {
 		e.preventDefault();
 		window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(shareURL) + '&title='  + encodeURIComponent('美国Neiman Marcus Group中国网站约你在今年秋天见面！留下你的邮箱，获取全球最热品牌及其当季新品，品牌背后的故事等最新时尚资讯，还有机会获得价值人民币5000元的购物券。详情点击') + '&pic=' + encodeURIComponent('http://media2.glamour-sales.com.cn/media/cmsimages/nm20120423/nm-teaser-bg2.jpg') /*+ '&ralateUid=1722407475'*/);
-		_gaq.push(['_trackEvent','Teaser_Sns_Weibo','Click']); 
+		_gaq.push(['_trackEvent','Teaser_Sns_Weibo','Click']);
 	});
 	jQuery('.snsnav .kaixin').click(function(e) {
 		e.preventDefault();
-		window.open('http://www.kaixin001.com/repaste/share.php?rtitle='+encodeURIComponent('美国Neiman Marcus Group中国网站约你在今年秋天见面！首屈设计师，时尚奢侈品，Neiman Marcus带来的不止是全球最炙手可热的品牌及其当季新品，还有更多时尚资讯和品牌背后的故事。留下你的邮箱，获取最新信息，还有机会获得价值人民币5000元的购物券。详情点击 www.neimanmarcus.com.cn')+'&amp;rurl='+encodeURIComponent(shareURL)+'&amp;rcontent=&lt;%=description%&gt;','_blank','scrollbars=no,width=600,height=450,left=75,top=20,status=no,resizable=yes'); 
-		_gaq.push(['_trackEvent','Teaser_Sns_Kaixin','Click']); 
+		window.open('http://www.kaixin001.com/repaste/share.php?rtitle='+encodeURIComponent('美国Neiman Marcus Group中国网站约你在今年秋天见面！首屈设计师，时尚奢侈品，Neiman Marcus带来的不止是全球最炙手可热的品牌及其当季新品，还有更多时尚资讯和品牌背后的故事。留下你的邮箱，获取最新信息，还有机会获得价值人民币5000元的购物券。详情点击 www.neimanmarcus.com.cn')+'&amp;rurl='+encodeURIComponent(shareURL)+'&amp;rcontent=&lt;%=description%&gt;','_blank','scrollbars=no,width=600,height=450,left=75,top=20,status=no,resizable=yes');
+		_gaq.push(['_trackEvent','Teaser_Sns_Kaixin','Click']);
 	});
-	
+
 	jQuery('.fancybox').fancybox({
 		wrapCSS    : 'nm-custom',
 		padding: 14,
@@ -317,11 +315,11 @@ jQuery(document).ready(function(){
 			'transitionOut' : 'none',
 		'type'	: 'iframe' //tweek the other, do not change this;
 	});
-	
+
 /*
 	jQuery("a.submit").click(function(){
 		var subError = "1";
-		jQuery(".formbox input").each(function (index, domEle) { 
+		jQuery(".formbox input").each(function (index, domEle) {
 			var $this = jQuery(this)
 			,	tempMail = jQuery.trim( $this.val());
 			if ( index == "0" ) {
@@ -345,7 +343,7 @@ jQuery(document).ready(function(){
 });
 
 //]]>
-</script>   
+</script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -361,6 +359,6 @@ jQuery(document).ready(function(){
   })();
 
 </script>
-				
+
 </body>
 </html>
