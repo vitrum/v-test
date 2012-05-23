@@ -149,7 +149,14 @@ Mage.Cookies.domain   = '.glamour-sales.com.cn';
 .parallaxbox .right03 { left: 470px; top: 363px; z-index:200;}
 .parallaxbox .right04 { left: 602px; top: 365px;z-index:90;}
 .parallaxbox .right05 { left: 737px; top: 384px;  z-index:200;}
-
+.msg {          position: fixed;
+            background:#303030;
+            padding:8px;
+            width:300px;
+            margin-top:0px;
+            bottom:20px;
+            left:-500px;
+            margin-left: 50%; z-index:9999; }
 </style>
 <div class="childre2012box">
     <div class="cd2012-head"><h1 class="title"><a href="http://www.glamour-sales.com.cm" class="toplogo">Glamour Sales</a></h1></div>
@@ -162,12 +169,12 @@ Mage.Cookies.domain   = '.glamour-sales.com.cn';
         </div>
         <div class="cd2012-product">
             <!--[if IE]>
-                <img src="http://media2.glamour-sales.com.cn/media/pix.gif" alt="" width="910" height="582"  border="0" usemap="#Map" />
+                <img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-04.jpg" alt="" width="910" height="582"  border="0" usemap="#Map" />
                 <map name="Map">
                     <area shape="rect" coords="115,26,423,145" href="http://e.weibo.com/glamoursaleschina" target="_blank" alt="微博">
                     <area shape="rect" coords="28,178,168,347" href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2376-kidsgame-event.html" target="_blank">
                     <area shape="rect" coords="178,192,293,356" href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2377-kidshomedeco-event.html" target="_blank">
-                    <area shape="rect" coords="309,186,436,355" href="http://www.glamour-sales.com.cn/fullprice/full/2264-ralphlauren-event.html" target="_blank">
+                    <area shape="rect" coords="309,186,436,355" href="http://www.glamour-sales.com.cn/" target="_blank">
                     <area shape="rect" coords="44,359,207,555" href="http://www.glamour-sales.com.cn/private-sales/bag-shoes/2322-skecherskids-event.html" target="_blank">
                     <area shape="rect" coords="230,375,392,557" href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2376-kidsgame-event.html?p=2" target="_blank">
                     <area shape="rect" coords="537,24,714,200" href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2423-kidsday-event.html" target="_blank">
@@ -180,64 +187,54 @@ Mage.Cookies.domain   = '.glamour-sales.com.cn';
             <![endif]-->
             <!--[if !IE]><!-->
             <div id="parallax" class="parallaxbox">
-                <div class="item left00"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-aa.png" alt="" /></a></div>
-                <div class="item left01"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a1.png" alt="" /></a></div>
-                <div class="item left02"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a2.png" alt="" /></a></div>
-                <div class="item left03"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a3.png" alt="" /></a></div>
-                <div class="item left04"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a4.png" alt="" /></a></div>
-                <div class="item left05"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a5.png" alt="" /></a></div>
-                <div class="item right00"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-bb.png" alt="" /></a></div>
-                <div class="item right01"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b1.png" alt="" /></a></div>
-                <div class="item right02"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b2.png" alt="" /></a></div>
-                <div class="item right03"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b3.png" alt="" /></a></div>
-                <div class="item right04"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b4.png" alt="" /></a></div>
-                <div class="item right05"><a href=""><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b5.png" alt="" /></a></div>
+                <div class="item left00"><a href="http://e.weibo.com/glamoursaleschina" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-aa.png" alt="" /></a></div>
+                <div class="item left01"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2376-kidsgame-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a1.png" alt="" /></a></div>
+                <div class="item left02"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2377-kidshomedeco-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a2.png" alt="" /></a></div>
+                <div class="item left03"><a href="http://www.glamour-sales.com.cn/" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a3.png" alt="" /></a></div>
+                <div class="item left04"><a href="http://www.glamour-sales.com.cn/private-sales/bag-shoes/2322-skecherskids-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a4.png" alt="" /></a></div>
+                <div class="item left05"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2376-kidsgame-event.html?p=2" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-a5.png" alt="" /></a></div>
+                <div class="item right00"><a href="http://e.weibo.com/glamoursaleschina" target="_blank"  alt="微博"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-bb.png" alt="" /></a></div>
+                <div class="item right01"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2423-kidsday-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b1.png" alt="" /></a></div>
+                <div class="item right02"><a href="http://www.glamour-sales.com.cn/" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b2.png" alt="" /></a></div>
+                <div class="item right03"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2423-kidsday-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b3.png" alt="" /></a></div>
+                <div class="item right04"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2423-kidsday-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b4.png" alt="" /></a></div>
+                <div class="item right05"><a href="http://www.glamour-sales.com.cn/private-sales/lifestyle-1/2423-kidsday-event.html" target="_blank"><img src="http://media2.glamour-sales.com.cn/media/cmsimages/2012children/children-item-b5.png" alt="" /></a></div>
             </div>
             <!--<![endif]-->
 
         </div>
     </div>
+<!--<div class="msg"></div>-->
 <script type="text/javascript" src="jquery.jparallax.js"></script>
 <script>
-
     jQuery(document).ready(function() {
-
-        var $l0=jQuery('.left00')
-        ,   $l1=jQuery('.left01')
-        ,   $l2=jQuery('.left02')
-        ,   $l3=jQuery('.left03')
-        ,   $l4=jQuery('.left04')
-        ,   $l5=jQuery('.left05')
-        ,   $r0=jQuery('.right00')
-        ,   $r1=jQuery('.right01')
-        ,   $r2=jQuery('.right02')
-        ,   $r3=jQuery('.right03')
-        ,   $r4=jQuery('.right04')
-        ,   $r5=jQuery('.right05')
-        ,   $c4=jQuery('.parallaxbox')
-        ,   $main = jQuery('.parallaxbox');
+        var $l0=jQuery('.left00')        ,   $l1=jQuery('.left01')        ,   $l2=jQuery('.left02')        ,   $l3=jQuery('.left03')        ,   $l4=jQuery('.left04')    ,   $l5=jQuery('.left05')        ,   $r0=jQuery('.right00')        ,   $r1=jQuery('.right01')        ,   $r2=jQuery('.right02')        ,   $r3=jQuery('.right03')        ,   $r4=jQuery('.right04')        ,   $r5=jQuery('.right05')        ,   $c4=jQuery('.parallaxbox')        ,   $main = jQuery('.parallaxbox');
         var moveTime;
-
-
         $c4.mousemove(function(e){
-
             moveTime = setTimeout(function(){
                 var origin = {x:$main.width(),y:$main.height()};
                 var moveX = e.pageX - $main.offset().left - origin.x/2, 
                 moveY =e.pageY - $main.offset().top - origin.y/2; 
-                //alert("moveY:" + moveY);
-
-                //$l0.css({top:24 - moveY*20/origin.y,left:96 + moveX*40/origin.x});
-                //$l1.css({top:0 - moveY*15/origin.y,left:-120 + moveX*20/origin.x});
-                //$l2.css({top:moveY*15/origin.y,left:-120 + moveX*60/origin.x});
-                //$l1.css({top:moveY*20/origin.y,left:-120 + moveX*40/origin.x});
-                jQuery(".item").each(function (index, domEle) { 
-                  // domEle == this 
-                  var itemOffset = jQuery(domEle).offset()
-                  , oldTop = $main.offset().top - itemOffset.top
-                  , oldLeft = $main.offset().left - itemOffset.left;
-                  jQuery(this).css({top:oldTop - moveY*20/origin.y,left:oldLeft + moveX*40/origin.x});
-
+                $l0.css({top:24 - moveY*40/origin.y,left:96 + moveX*80/origin.x});
+                $l1.css({top:158 - moveY*30/origin.y,left:11 + moveX*60/origin.x});
+                $l2.css({top:176 - moveY*20/origin.y,left:148 + moveX*40/origin.x});
+                $l3.css({top:176 - moveY*15/origin.y,left:294 + moveX*20/origin.x});
+                $l4.css({top:353 - moveY*20/origin.y,left:56 + moveX*40/origin.x});
+                $l5.css({top:367 - moveY*30/origin.y,left:220 + moveX*60/origin.x});
+                $r0.css({top:217 - moveY*40/origin.y,left:474 + moveX*80/origin.x});
+                $r1.css({top:24 - moveY*30/origin.y,left:556 + moveX*60/origin.x});
+                $r2.css({top:40 - moveY*20/origin.y,left:719 + moveX*40/origin.x});
+                $r3.css({top:363 - moveY*30/origin.y,left:470 + moveX*60/origin.x});
+                $r4.css({top:365 - moveY*15/origin.y,left:602 + moveX*20/origin.x});
+                $r5.css({top:384 - moveY*30/origin.y,left:737 + moveX*60/origin.x});
+                jQuery(".left00").each(function (index, domEle) { 
+                    // domEle == this 
+                    var itemOffset = jQuery(domEle).offset()
+                    //, oldTop = 
+                    , oldLeft = $main.offset().left - itemOffset.left;
+                    var  p = jQuery(".msg");
+                    p.html( "itemleft: " + itemOffset.left + ", itemtop: " + itemOffset.top + ", moveX: " + moveX + ", moveY: " + moveY );
+                    //jQuery(this).css({top:oldTop - moveY*20/origin.y,left:oldLeft + moveX*40/origin.x});
                 });
 
             },50);  
