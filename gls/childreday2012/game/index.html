@@ -5,7 +5,7 @@
 	http://michalbe.blogspot.com
 	http://twitter.com/michalbe
 	-->
-    <title>Simple game with HTML5 Canvas part 5</title>
+    <title>Simple game with HTML5 Canvas</title>
 	<style>
 		body {
 			margin:0px;
@@ -15,13 +15,64 @@
 		
 		canvas{
 			outline:0;
-			margin-left: auto;
-			margin-right: auto;
+			border:1px solid #000;
+			margin: 0 auto;
 		}
 	</style>
 </head>
 <body>
 <canvas id='c'></canvas>
 <script src="game.js"></script>
+
+<!-- Piwik -->
+     	<script type="text/javascript">
+        var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.glamour-sales.com.cn/" : "http://piwik.glamour-sales.com.cn/");
+        document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+	        piwikTracker.setCustomVariable( 2, "referername", "none" );
+		piwikTracker.setCustomVariable( 1, "gls_campaign", "" );
+		piwikTracker.setCustomVariable( 4, "gls_source", "" );
+		piwikTracker.setCustomVariable( 5, "gls_medium", "" );
+		piwikTracker.setCustomVariable( 6, "gls_term", "" );
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+        </script>
+        <noscript><p><img src="http://piwik.glamour-sales.com.cn/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
+        <!-- End Piwik Tag -->
+	
+				<!-- PubSage generic tracking: start -->
+				<noscript><img src=http://trc.adsage.com/trc/atac/conv.gif?id=1192 width="0px" style="display:none!important;"/></noscript>
+				<script type="text/javascript"><!--
+				var pubsage_conv_id = 1192;
+				//-->
+				</script>
+				<script type="text/javascript" language="javascript" src="http://trc.adsage.com/trc/atac/conv.js?id=1192"></script>
+				<script type="text/javascript" language="javascript" src="http://ws.adsage.com/web/conv_pro.js"></script>
+				       <script type ="text/javascript">
+				           function Ps_Click(num) {
+				               pubsage_conv && pubsage_conv.sendClickEvent(false, num);
+				           }
+				       </script>		
+				<!-- PubSage generic tracking: end -->	
+<!-- BEGIN GOOGLE ANALYTICS CODE -->
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+    })();
+
+    var _gaq = _gaq || [];
+
+_gaq.push(['_setAccount', 'UA-12807854-1']);_gaq.push(['_setCustomVar', 1, 'Visitor Type', 'Anonymous', 2]);_gaq.push(['_trackPageview']);
+
+
+//]]>
+</script>
 </body>
 </html>

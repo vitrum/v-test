@@ -294,6 +294,10 @@ var GameLoop = function(){
 			ctx.font = "10pt Arial";
 			ctx.fillText("GAME OVER", width / 2 - 60, height / 2 - 50);
 			ctx.fillText("YOUR RESULT:" + points, width / 2 - 60, height / 2 - 30);
+
+			_gaq.push(['_trackEvent','childreday2012_game_over' + points, width / 2 - 60, height / 2 - 30  ,'Click']);
+
+
 		}, 100);
 		
 	};
