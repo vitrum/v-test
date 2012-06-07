@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Camuti.com - Breathing Background Image - Complex Version</title>
+		<meta name="keywords" content="Tim Camuti, front end developer, web app, web application, application development, ui" /> 
+		<meta name="description" content="Breathable background image for web pages. Full size image that breathes in and out." /> 
+		<style type="text/css">
+		html { /* Allows child heights to fill in */
+			height:100%;
+		}
+		body {
+			margin: 0px;
+			padding: 0px;
+			background: #000000; /* this is the background that will show through when the image fades*/
+		}
+		
+		img.bbkd {
+			margin-left:-50%;
+			min-height: 100%;
+			height: auto;
+			left:50%;
+			position: fixed;
+			top:0px;
+			width: 100%;
+			z-index: 0;
+			min-width: 1024px;
+        }
+		@media screen and (max-width: 1024px) {
+		img.bbkd {
+	    	left: 50%;
+	        margin-left: -50%;
+	   		}
+	   	}
+		/********* Other page stuff *********/
+		h2 {
+			color: #ffffff;
+			font:bold 64px sans-serif;
+			position: absolute;
+			text-align: center;
+			top:50%;
+			width:100%;
+			z-index:2;
+		}
+		</style>
+	</head>
+	<body>
+		<h2>Stars!</h2>
+		<img id="bbkd" src="http://static.pmylund.com/blog/content/antares_and_clouds.jpg">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script>
+			$(window).load(function() {
+			/* 
+			This needs to be in the window.load event or Chrome can't get the bgImage width or height. 
+			If that doesn't work for you, uncomment the bgImage.load function and use this code as you need
+			*/
+			var w = $(window),
+			bgImage = $("#bbkd"),
+			aspect = bgImage.width()/bgImage.height();
+			bgImage.addClass("bbkd");
+			/*
+			Necessary for Chrome if this is not in the window.load event
+				bgImage.load(function(){
+					aspect = bgImage.width()/bgImage.height();
+				});
+			*/
+
+			function backgroundBreathe(ms){
+				ms = (Math.floor(ms/2))*2;
+				if(w.width() >= parseInt(bgImage.css("minWidth")) ){
+					bgImage.animate({width: "104%","left":"48%",opacity: "1"}, ms/2).animate({width: "100%","left":"50%",opacity: ".5"}, ms/2);
+				}
+				else{
+					var sw= bgImage.width();
+					bgImage.animate({width: sw*1.04,"left":"48%",opacity: "1"}, ms/2).animate({width: sw,"left":"50%",opacity: ".5"}, ms/2);
+				}
+				window.BBKDtimer = setTimeout(function(){backgroundBreathe(ms);}, ms);
+			}
+			
+			backgroundBreathe(3200);
+
+			function bgResize() {
+				var imageWidth = (bgImage.width()/bgImage.height()) < aspect? w.height() * aspect : bgImage.css("minWidth");
+				bgImage.css({"minWidth": imageWidth});
+			}			
+
+			// Set events
+			w.resize(bgResize);
+			
+			//start the breathing
+			backgroundBreathe(3200);
+		});
+			
+		</script>
+	</body>
+</html>
