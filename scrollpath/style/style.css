@@ -145,6 +145,8 @@ nav a:hover {
 	font-size: 30px;
 	text-align: center;
 	font-weight: bold;
+	top: 2000px;
+	left: 3000px;
 }
 
 .demo .arrow {

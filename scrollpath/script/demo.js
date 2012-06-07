@@ -5,9 +5,9 @@ function init() {
 
 	$.fn.scrollPath("getPath")
 		// Move to 'start' element
-		.moveTo(400, 50, {name: "start"})
+		.moveTo(3000, 2000, {name: "start"})
 		// Line to 'description' element
-		.lineTo(400, 800, {name: "description"})
+		.lineTo(500, 800, {name: "description"})
 		// Arc down and line to 'syntax'
 		.arc(200, 1200, 400, -Math.PI/2, Math.PI/2, true)
 		.lineTo(600, 1600, {
@@ -84,7 +84,10 @@ function init() {
 					$(".follow .count").html("the " + ordinal(data.count + 1) + " kind person to");
 				}
 			});
+
 	}
+
+
 
 
 function highlight(element) {
