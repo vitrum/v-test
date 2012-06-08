@@ -221,38 +221,9 @@ nav a:hover {
 		background: lightblue;
 	}
 }
-.demo { 
-	width: 800px;
-
-	height:600px;
-}
-.description {
-
-	width: 1200px;
-	height:800px;
-}
-.syntax {
-
-	width: 2400px;
-	height:200px;
-}
-.scrollbar {
-
-	width: 1000px;
-	height:800px;
-}
-.rotations {
-
-	width: 200px;
-	height:100px;
-}
-.source {
-
-	width: 400px;
-	height:300px;
-}
-.follow {
-
-	width: 2000px;
-	height:1200px;
-}
+/**/
+.station_1 { top:1600px; left:1600px;}
+.station_2 { top:400px; left:1600px;}
+.station_3 { top:400px; left:400px;}
+.station_4 { top:1600px; left:400px;}
+.maskbox { width:960px; height:600px; position: relative; overflow:hidden; margin:20px auto;  }

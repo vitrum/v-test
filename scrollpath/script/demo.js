@@ -5,24 +5,31 @@ function init() {
 
 	$.fn.scrollPath("getPath")
 		// Move to 'start' element
-		.moveTo(3000, 2000, {name: "start"})
+		.moveTo(2000, 2000, {name: "start"})
 		// Line to 'description' element
-		.lineTo(500, 800, {name: "description"})
+		.lineTo(2000, 800, {name: "station_2"})
 		// Arc down and line to 'syntax'
-		.arc(200, 1200, 400, -Math.PI/2, Math.PI/2, true)
-		.lineTo(600, 1600, {
+		.lineTo(800, 800, {
 			callback: function() {
 				highlight($(".settings"));
 			},
-			name: "syntax"
+			name: "station_3"
 		})
 		// Continue line to 'scrollbar'
-		.lineTo(1750, 1600, {
+		.lineTo(800, 2000, {
 			callback: function() {
 				highlight($(".sp-scroll-handle"));
 			},
-			name: "scrollbar"
+			name: "station_4"
 		})
+		.lineTo(2000, 2000, {
+			callback: function() {
+				//alert('end!');
+				$(".settings .show-path").text("end!!!");
+			},
+			name: "end"
+		})
+		/*
 		// Arc up while rotating
 		.arc(1800, 1000, 600, Math.PI/2, 0, true, {rotate: Math.PI/2 })
 		// Line to 'rotations'
@@ -46,6 +53,7 @@ function init() {
 		})
 		// Arc and rotate back to the beginning.
 		.arc(1300, 50, 900, -Math.PI/2, -Math.PI, true, {rotate: Math.PI*2, name: "end"});
+		*/
 
 	// We're done with the path, let's initate the plugin on our wrapper element
 	$(".wrapper").scrollPath({drawPath: true, wrapAround: true});
