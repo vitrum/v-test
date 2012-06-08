@@ -75,9 +75,11 @@ a:active {
 		4px 4px 0 #101010;
 }
 
-.wrapper { background:rgba(20, 222, 54, 0.4)  url(../assets/best-beaches-2012-winter-coast-guard-beach_54420.jpg) top center repeat;
-height:5000px;
-width:8000px;
+.wrapper { background:rgba(20, 222, 54, 0.4)  url(../assets/silver.jpg) top center repeat;
+
+background-size:cover;
+height:2880px;
+width:1800px;
 }
 .wrapper div {
 	position: absolute;
