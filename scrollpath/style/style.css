@@ -228,4 +228,4 @@ nav a:hover {
 .station_2 { top:400px; left:1600px;}
 .station_3 { top:400px; left:400px;}
 .station_4 { top:1600px; left:400px;}
-.maskbox { width:960px; height:600px; position: relative; overflow:hidden; margin:20px auto;  }
+.maskbox { width:90%; height:90%; position: relative; overflow:hidden; margin:20px auto;  }

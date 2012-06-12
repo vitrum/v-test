@@ -8,6 +8,7 @@ function init() {
 		.moveTo(2000, 2000, {name: "start"})
 		// Line to 'description' element
 		.lineTo(2000, 800, {name: "station_2"})
+		.arc(1400, 800, 700, 1, 2, true)
 		// Arc down and line to 'syntax'
 		.lineTo(800, 800, {
 			callback: function() {
@@ -15,6 +16,7 @@ function init() {
 			},
 			name: "station_3"
 		})
+		.arc(800, 1400, 700, -Math.PI/1.5, Math.PI/1.5, true)
 		// Continue line to 'scrollbar'
 		.lineTo(800, 2000, {
 			callback: function() {
@@ -86,13 +88,13 @@ function init() {
 		e.preventDefault();
 	});
 
-	$.getJSON("http://cdn.api.twitter.com/1/urls/count.json?callback=?&url=http%3A%2F%2Fjoelb.me%2Fscrollpath",
+	/*$.getJSON("http://cdn.api.twitter.com/1/urls/count.json?callback=?&url=http%3A%2F%2Fjoelb.me%2Fscrollpath",
 			function(data) {
 				if(data && data.count !== undefined) {
 					$(".follow .count").html("the " + ordinal(data.count + 1) + " kind person to");
 				}
 			});
-
+*/
 	}
 
 
