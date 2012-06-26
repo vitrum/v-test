@@ -6,18 +6,20 @@
         window.onload = function () {
             var canvas = document.getElementById('pcanvas');
             var context = canvas.getContext('2d');
-            context.arc(300, 150, 100, Math.PI, Math.PI*1/2);
+           /* context.arc(300, 150, 100, Math.PI, Math.PI*1/2);
             context.arc(300, 150, 110, Math.PI, Math.PI*2);
             context.arc(300, 150, 120, -Math.PI/1.5, Math.PI/1.5);
             context.arc(300, 150, 130, Math.PI*2, Math.PI);
             context.arc(300, 150, 140, Math.PI, -Math.PI*2);
-            context.arc(300, 180, 180, Math.PI*2, Math.PI , true);
+            context.arc(300, 180, 180, Math.PI*2, Math.PI , true);*/
+            context.moveTo( 848, 63 );
+            context.bezierCurveTo( 85, 219, 1177, 136, 243, 109 );
             context.stroke();
         }    
     </script>
 </head>
 <body>
-<canvas id="pcanvas" width="600" height="400"
+<canvas id="pcanvas" width="1200" height="800"
     style="border:1px dotted gray;"   > </canvas>
 </body>
 </html>
