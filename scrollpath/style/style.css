@@ -75,7 +75,7 @@ a:active {
 		4px 4px 0 #101010;
 }
 
-.wrapper { background:rgba(20, 222, 54, 0.4)  url(../assets/silver.jpg) top center repeat;
+.wrapper { background:rgba(20, 222, 54, 0.4)  url(../assets/silver.jpg) center center repeat;
 
 background-size:cover;
 height:2880px;
@@ -224,8 +224,8 @@ nav a:hover {
 	}
 }
 /**/
-.station_1 { top:1600px; left:1600px;}
-.station_2 { top:400px; left:1600px;}
-.station_3 { top:400px; left:400px;}
-.station_4 { top:1600px; left:400px;}
+.station_1 { top:1600px; left:1400px;}
+.station_2 { top:400px; left:1600px;transform: rotate(-90deg) translateX(50px);}
+.station_3 { top:600px; left:400px;transform: rotate(-180deg) translateX(50px);}
+.station_4 { top:1600px; left:400px;transform: rotate(-270deg) translateX(50px);}
 .maskbox { width:90%; height:90%; position: relative; overflow:hidden; margin:20px auto;  }

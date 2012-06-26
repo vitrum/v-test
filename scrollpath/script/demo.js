@@ -7,23 +7,33 @@ function init() {
 		// Move to 'start' element
 		.moveTo(2000, 2000, {name: "start"})
 		// Line to 'description' element
-		.lineTo(2000, 800, {name: "station_2"})
-		.arc(1400, 800, 700, 1, 2, true)
+		.rotate(Math.PI/2)
+		.lineTo(2000, 800, {
+			callback: function() {
+				highlight($(".settings"));
+			},
+			name: "station_2"
+		})
+		.arc(1400, 800, 600, Math.PI*2, Math.PI , true)
 		// Arc down and line to 'syntax'
+		.rotate(2*Math.PI/2)
 		.lineTo(800, 800, {
 			callback: function() {
 				highlight($(".settings"));
 			},
 			name: "station_3"
 		})
-		.arc(800, 1400, 700, -Math.PI/1.5, Math.PI/1.5, true)
+		.rotate(3*Math.PI/2)
+		.arc(1400, 1400, 848, -Math.PI/1.3, Math.PI/1.3, true)
 		// Continue line to 'scrollbar'
+
 		.lineTo(800, 2000, {
 			callback: function() {
 				highlight($(".sp-scroll-handle"));
 			},
 			name: "station_4"
 		})
+
 		.lineTo(2000, 2000, {
 			callback: function() {
 				//alert('end!');
@@ -31,6 +41,7 @@ function init() {
 			},
 			name: "end"
 		})
+		.rotate(4*Math.PI/2)
 		/*
 		// Arc up while rotating
 		.arc(1800, 1000, 600, Math.PI/2, 0, true, {rotate: Math.PI/2 })
@@ -88,17 +99,13 @@ function init() {
 		e.preventDefault();
 	});
 
-	/*$.getJSON("http://cdn.api.twitter.com/1/urls/count.json?callback=?&url=http%3A%2F%2Fjoelb.me%2Fscrollpath",
-			function(data) {
-				if(data && data.count !== undefined) {
-					$(".follow .count").html("the " + ordinal(data.count + 1) + " kind person to");
-				}
-			});
-*/
+
 	}
 
 
+function rotateDiv (element) {
 
+}
 
 function highlight(element) {
 	if(!element.hasClass("highlight")) {
