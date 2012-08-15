@@ -1,0 +1,4 @@
+AuthName “Section Name”
+AuthType Basic
+AuthUserFile /full/path/to/.htpasswd
+Require valid-user

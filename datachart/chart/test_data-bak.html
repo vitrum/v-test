@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <title>aaa</title> 
+    
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<style>
+		body{font-family:Calibri; font-size:10pt; }
+		ul, li{list-style:outside none; padding:0; margin:0}
+		a.disabled{text-decoration:none; color:#888; cursor:default}
+		.hide{display:none}
+		
+		#data{width:1000px; height:700px; position:relative; }
+		.chart{position:absolute; left:0; top:0}
+		#colorlist{margin:10px 0; color:#2f2f2f; text-shadow: #ccc 1px 1px 1px; z-index:999}
+		.color-example{display:inline-block; padding:0 3px; width:50px; text-align:center; margin-right:5px;border-radius:5px;border:2px solid #fff;
+			cursor:pointer;}
+		.color-hide {background:none !important;}
+		.color-example-hideall{background:#666; color:#eee; text-shadow:none}
+		.color-example-hideall.color-hide{border-color:#666; color:#2f2f2f}
+		.color-example-Sally.color-hide{border-color:#9A9CFF; }
+		.color-example-Karen.color-hide{border-color:#F691B2}
+		.color-example-Brandon.color-hide{border-color:#FBE983}
+		.color-example-Jessie.color-hide{border-color:#7BD148}
+		.color-example-Marie.color-hide{border-color:#4986E7}
+		.color-example-Sean.color-hide{border-color:#D06B64}
+		#chart-xaixs{margin-top:-10px}
+		.chart-xaxis-label{width:140px; display:inline-block; text-align:center;}
+		.chart-ylaxis-label{height:70px; padding-left:5px}
+		#chart-yr{display:none}
+		#chart-yraixs{text-align:right; width:1000px; position:absolute; top:0; left:0; display:none; }
+		.chart-yraixs-label{padding-right:5px; color:#666;}
+		
+		.event{position:absolute; cursor:pointer; }
+		.event-focus{z-index:999}
+		.salesthru{width:100%; border:2px solid #ccc; border-radius:5px; height:34px; position:relative}
+		.salesthru-sold{height:34px}
+		.salesthru-label{position:absolute; left:0; top:0; padding:2px 0 2px 3px; white-space:nowrap; color:#222; line-height:15px;
+			text-shadow: #ccc 1px 1px 1px}
+		.event-Sally .salesthru,.color-example-Sally{background:#9A9CFF;}
+		.event-Sally .salesthru-sold{background:#585bff;}
+		.event-Karen .salesthru,.color-example-Karen{background:#F691B2;}
+		.event-Karen .salesthru-sold{background:#f22568;}
+		.event-Brandon .salesthru,.color-example-Brandon{background:#FBE983;}
+		.event-Brandon .salesthru-sold{background:#fad816;}
+		.event-Jessie .salesthru,.color-example-Jessie{background:#7BD148;}
+		.event-Jessie .salesthru-sold{background:#3d9a06;}
+		.event-Marie .salesthru,.color-example-Marie{background:#4986E7;}
+		.event-Marie .salesthru-sold{background:#04398e;}
+		.event-Sean .salesthru,.color-example-Sean{background:#D06B64;}
+		.event-Sean .salesthru-sold{background:#cf3025;}
+		
+	</style>
+  </head> 
+  <body class="">
+	<div>
+		<!--<a id="clearOverlap" href="#">clear overlapping</a>-->
+		<input type="text" value="test_data" id="csvname" />
+		<input type="button" value="Generate" id="GenerateChart" />
+		<a id="salesLevel" href="#">By Salse range</a>			
+		<a id="original" class="disabled" href="#">Original position</a>
+		<ul id="colorlist">
+		</ul>		
+	</div>
+		<div id="data">			
+			<canvas id="chart" class="chart" width="1000" height="700"></canvas>
+			<canvas id="chart-yr" class="chart" width="1000" height="700"></canvas>
+			<ul id="chart-ylaixs"></ul>
+			<ul id="chart-yraixs">
+				<li class="chart-yraixs-label">> 100K</li>
+				<li class="chart-yraixs-label">50K - 100K</li>
+				<li class="chart-yraixs-label">< 50K</li>
+			</ul>
+			<ul id="eventlist"></ul>
+		</div>
+		<ul id="chart-xaixs"></ul>
+		
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript"> 
+<!--
+//最小值
+Array.prototype.min = function() {
+var min = this[0];
+var len = this.length;
+for (var i = 1; i < len; i++){ 
+if (this[i] < min){ 
+min = this[i]; 
+} 
+} 
+return min;
+}
+//最大值
+Array.prototype.max = function() { 
+var max = this[0];
+var len = this.length; 
+for (var i = 1; i < len; i++){ 
+if (this[i] > max) { 
+max = this[i]; 
+} 
+} 
+return max;
+} 
+// remove repeat element
+Array.prototype.distinct = function(){
+    var self = this;
+    var _a = this.concat().sort();
+    _a.sort(function(a,b){
+        if(a == b){
+            var n = self.indexOf(a);
+            self.splice(n,1);
+        }
+    });
+    return self;
+};
+function eventTpl (tplStr){
+			var _a = arguments;
+			return tplStr.replace(/%s[1-9]%/g, function(s){
+				var _i = s.substr(2).replace('%','');
+				return _a[_i];
+			});
+		}
+/*
+function drawAxis(args){
+	
+	var axisStr = {'x':[],'yl':[]},
+		xTpl = '<li class="chart-xaxis-label">%s1% left</li>';
+		yTpl_left = '<li class="chart-ylaxis-label">%s1%</li>';
+	
+	var unitLength = 140; //args.chart.width / 7; 
+	
+	
+	var xContext = document.getElementById('chart').getContext('2d');	
+	xContext.strokeStyle= '#666';
+	xContext.lineWidth=2;
+	
+	var _x = 0;
+	xContext.clearRect(0, 0, args.chart.width, args.chart.height);
+	xContext.save();
+	xContext.beginPath();
+	xContext.moveTo(_x,args.chart.height);
+	//xContext.lineTo(_xLength,300);
+	
+	while ( _x < args.chart.width ) {
+		_x += unitLength; 
+		xContext.lineTo(_x, args.chart.height);
+		xContext.lineTo(_x, args.chart.height - 5);
+		xContext.moveTo(_x, args.chart.height);
+	}
+	for (var d=1; d<= args.x.max; d++) {
+		if ( d>1 ) {
+			axisStr.x.push(eventTpl(xTpl,d + ' Days'))
+			}else{
+			axisStr.x.push(eventTpl(xTpl,d + ' Day'))
+			}
+	}
+	
+	// draw Y axis
+		
+		xContext.moveTo(1, args.chart.height);
+		var unitLength_Y = args.chart.height / 10, _y = args.chart.height;
+		while ( _y >= 0 ) {			
+			xContext.lineTo(1, _y);
+			xContext.lineTo(1 + 5, _y);
+			xContext.moveTo(1, _y);
+			if (_y != 0){
+				axisStr.yl.push(eventTpl(yTpl_left, Math.round(_y*args.y.max/args.chart.height) ));
+			}
+			_y -= unitLength_Y; 
+		}
+
+				
+	
+	xContext.closePath();	
+	xContext.stroke();
+	xContext.restore();
+	
+	//draw Y-right
+	var _y50 = args.chart.height * eventData_sales.lt50.length / eventData.length,
+		_y100 = args.chart.height * eventData_sales.lt100.length / eventData.length; 
+		
+		$('.chart-yraixs-label:eq(2)').height(_y50);
+		$('.chart-yraixs-label:eq(1)').height(_y100);
+		$('.chart-yraixs-label:eq(0)').height(args.chart.height - _y50 - _y100);
+			
+		var yContext = document.getElementById('chart-yr').getContext('2d');	
+		yContext.strokeStyle= '#ccc';
+		yContext.lineWidth=1;
+		//xContext.fillStyle= metroObj.color;
+		
+		yContext.clearRect(0, 0, args.chart.width, args.chart.height);
+		yContext.save();
+		yContext.beginPath();
+		yContext.moveTo(0,args.chart.height-_y50);
+		yContext.lineTo(args.chart.width,args.chart.height-_y50);
+		yContext.moveTo(0,args.chart.height-_y50-_y100);
+		yContext.lineTo(args.chart.width,args.chart.height-_y50-_y100);
+		yContext.moveTo(args.chart.width,0);
+		yContext.lineTo(args.chart.width,args.chart.height);
+		yContext.stroke();
+	
+	return axisStr;
+}
+
+function eventTpl (tplStr){
+		var _a = arguments;
+		return tplStr.replace(/%s[1-9]%/g, function(s){
+			var _i = s.substr(2).replace('%','');
+			return _a[_i];
+		});
+	}
+
+function drawEvent (event,chartArgs){ 
+	var unitLength = {'x':140, 'y': chartArgs.chart.height / 10}; 
+
+	var eTop = chartArgs.chart.height - (event.salesK * chartArgs.chart.height / chartArgs.y.max) - 25,
+		eLeft = (event.days_left-1) * unitLength.x,
+		ePosition = {'left':eLeft, 'top':eTop},
+		eventStr = '', colorStr = '', xAxisStr = ''; 
+	
+	var eventTemplate = '<li id="%s6%" class="event event-%s8%" style="width:%s1%px;top:%s2%px; left:%s3%px"><div class="salesthru"><div class="salesthru-sold" style="width:%s5%"></div><div class="salesthru-label">%s4% <br/> %s7%K - %s9% (%s5%)</div></div></li>',
+		colorTpl = '<li class="color-example color-example-%s1%">%s1%</li>';
+		
+		
+	//$('#data').append(eventTpl(eventTemplate, unitLength.x, eTop, eLeft, event.event_name, Math.round(event.value_sell_thru*100)+'%',event.event_cat_id,event.salesK,event.merchant));
+	eventStr = eventTpl(eventTemplate, unitLength.x, eTop, eLeft, event.event_name, Math.round(event.value_sell_thru*100)+'%',event.event_cat_id,event.salesK,event.merchant, event.sold_qty);
+	colorStr = eventTpl(colorTpl,event.merchant);
+	
+	var e = {'position':ePosition,'div':eventStr,'color':colorStr}
+	
+	return e;
+	
+}
+
+
+function splitLines(data){ //console.log(data)
+	//tear down
+	$('.needclear').empty(); 
+	eventData = {}; eventPosition = []; eventData_sales = {'lt50' : [], 'lt100' : [], 'gt100' : []};
+	$('#chart-yr,#chart-yraixs').hide();
+	$('#salesLevel').removeClass('disabled');
+	$('#original').addClass('disabled');
+	
+
+	var seriesInFile=[], endDays = [], salesAmount = [];
+	var lines = data.split('\r\n'),	dataTag = lines[0].split(','); 
+	$.each(lines, function(lineNo, line) {
+		if ( lineNo > 0){
+		   var _data = line.split(','), _dataObj = []; 
+		   $.each(_data, function(i, item) {
+					_dataObj.push('"' + dataTag[i] + '":"' + item + '"');
+					//if ( dataTag[i] == 'startdate') { sDate.push(item.replace(/-/g, "/"))}
+					if ( dataTag[i] == 'days_left') { endDays.push(parseFloat(item))}
+					if ( dataTag[i] == 'salesK') { salesAmount.push(parseFloat(item));}
+			});
+		   seriesInFile.push(eval('({' + _dataObj + '})')); 
+	   }	   
+	}); // end each
+	
+	eventData = seriesInFile;
+	
+	//separate to 3 levels <50, 50-100, >100
+	for (var l = salesAmount.length - 1; l>=0; l--){
+				if ( salesAmount[l] <= 50 ) {
+					eventData_sales.lt50.push(eventData[l]); 
+				}else{
+					if ( salesAmount[l] <= 100) {
+						eventData_sales.lt100.push(eventData[l])
+					}else{
+						eventData_sales.gt100.push(eventData[l])
+					}
+				}
+			}
+	
+	var ChartParas = {
+			'x':{ 'min' : endDays.min(), 'max' :endDays.max()},
+			'y':{ 'min' : salesAmount.min(), 'max' : salesAmount.max() + 10, 'arr': salesAmount},
+			'chart' : {'width' : $('#chart').width() - 1, 'height' : $('#chart').height() - 10}
+			}; 
+	var axisStr = drawAxis(ChartParas); 
+	
+	setTimeout(function(){		
+		var eventStr = [], colorStr = [];		
+		$.each(seriesInFile, function(i){
+			var _e = drawEvent(seriesInFile[i],ChartParas)
+			eventPosition.push(_e.position);
+			eventStr.push(_e.div)
+			colorStr.push(_e.color)
+		})		
+		
+		colorStr.push('<li class="color-example color-example-hideall color-hide">Hide All</li>')	
+		$('#chart-xaixs').append(axisStr.x.join(''))
+		$('#chart-ylaixs').append(axisStr.yl.join(''))
+		$('#eventlist').append(eventStr.join(''));
+		$('#colorlist').append(colorStr.distinct().join(''));
+		
+		$('#chart-xaixs,#chart-ylaixs,#eventlist,#colorlist').addClass('needclear');
+		
+	}, 200);
+	
+}
+//var eventData = {}, eventPosition = [], eventData_sales = {'lt50' : [], 'lt100' : [], 'gt100' : []};
+function getSeries(filename){
+   //create an array where objects will be stored.  
+   $.get(filename+'.csv',
+				function(data) { 
+					eventData = data;
+				},'text')
+		.success(function(data) { 
+					// Split the lines
+					
+					splitLines(data);
+					
+					
+				});
+	 //return seriesInFile;
+    }; 
+*/
+(function( $ ){
+
+  var dataVisualmethods = {
+    init : function( content ) { 
+		return this.each(function(){
+			$('.needclear').empty(); 
+			content.eventData = {}; content.eventPosition = []; content.eventData_sales = {'lt50' : [], 'lt100' : [], 'gt100' : []};
+			$('#chart-yr,#chart-yraixs').hide();
+			$('#salesLevel').removeClass('disabled');
+			$('#original').addClass('disabled'); 
+		});
+    },
+	getCSVdata : function ( content ) {
+		var $this = this;
+		return this.each(function(){
+			$.get(content.filename + '.csv',
+					function(data) { 
+						//eventData = data;
+					},'text')// end AJAX get
+				.success(function(data) { 
+							var seriesInFile=[], endDays = [], salesAmount = [];
+							var lines = data.split('\r\n'),	dataTag = lines[0].split(','); 
+							$.each(lines, function(lineNo, line) {
+								if ( lineNo > 0){
+								   var _data = line.split(','), _dataObj = []; 
+								   $.each(_data, function(i, item) {
+											_dataObj.push('"' + dataTag[i] + '":"' + item + '"');
+											if ( dataTag[i] == 'days_left') { endDays.push(parseFloat(item))}
+											if ( dataTag[i] == 'salesK') { salesAmount.push(parseFloat(item));}
+									});
+								   seriesInFile.push(eval('({' + _dataObj + '})')); 
+							   }	   
+							}); // end each
+							
+							//eventData = seriesInFile;							
+							
+							$this.dataVisual('generate',content, seriesInFile, endDays, salesAmount)
+							
+						}); // end AJAX success
+		})
+	},
+	generate : function (content ,seriesInFile, endDays, salesAmount) {
+	
+		var $this = this;		
+	
+		//separate to 3 levels <50, 50-100, >100
+		for (var l = salesAmount.length - 1; l>=0; l--){
+					if ( salesAmount[l] <= 50 ) {
+						content.eventData_sales.lt50.push(seriesInFile[l]); 
+					}else{
+						if ( salesAmount[l] <= 100) {
+							content.eventData_sales.lt100.push(seriesInFile[l])
+						}else{
+							content.eventData_sales.gt100.push(seriesInFile[l])
+						}
+					}
+				}
+		
+		var _chartH = $('#chart').height() - 10, _chartW = $('#chart').width() - 1;
+		
+		var ChartParas = {
+				'x':{ 'min' : endDays.min(), 'max' :endDays.max()},
+				'y':{ 'min' : salesAmount.min(), 'max' : salesAmount.max() + 10, 'arr': salesAmount},
+				'yr': {'_y50' : _chartH * content.eventData_sales.lt50.length / seriesInFile.length,
+					   '_y100' : _chartH * content.eventData_sales.lt100.length / seriesInFile.length},
+				'chart' : {'width' : _chartW, 'height' : _chartH}
+				}; 
+		
+		var axisStr = $this.dataVisual('drawAxis',content, ChartParas); 
+	
+		setTimeout(function(){		
+			var eventStr = [], colorStr = [];		
+			$.each(seriesInFile, function(i){
+				var _e = $this.dataVisual('drawEvent',seriesInFile[i],ChartParas);
+				content.eventPosition.push(_e.position);
+				eventStr.push(_e.div)
+				colorStr.push(_e.color)
+			})		
+			
+			colorStr.push('<li class="color-example color-example-hideall color-hide">Hide All</li>')	
+			$('#chart-xaixs').append(axisStr.x.join(''))
+			$('#chart-ylaixs').append(axisStr.yl.join(''))
+			$('#eventlist').append(eventStr.join(''));
+			$('#colorlist').append(colorStr.distinct().join(''));
+			
+			$('#chart-xaixs,#chart-ylaixs,#eventlist,#colorlist').addClass('needclear');
+			$this.dataVisual('charttools',content,ChartParas);
+			
+		}, 200);
+	},
+	drawAxis : function ( content, args ){
+		var axisStr = {'x':[],'yl':[]},
+			xTpl = '<li class="chart-xaxis-label">%s1% left</li>';
+			yTpl_left = '<li class="chart-ylaxis-label">%s1%</li>';
+		
+		var unitLength = 140; //args.chart.width / 7; 
+		
+		
+		var xContext = document.getElementById('chart').getContext('2d');	
+		xContext.strokeStyle= '#666';
+		xContext.lineWidth=2;
+		
+		var _x = 0;
+		xContext.clearRect(0, 0, args.chart.width, args.chart.height);
+		xContext.save();
+		xContext.beginPath();
+		xContext.moveTo(_x,args.chart.height);
+		//xContext.lineTo(_xLength,300);
+		
+		while ( _x < args.chart.width ) {
+			_x += unitLength; 
+			xContext.lineTo(_x, args.chart.height);
+			xContext.lineTo(_x, args.chart.height - 5);
+			xContext.moveTo(_x, args.chart.height);
+		}
+		for (var d=1; d<= args.x.max; d++) {
+			if ( d>1 ) {
+				axisStr.x.push(eventTpl(xTpl,d + ' Days'))
+				}else{
+				axisStr.x.push(eventTpl(xTpl,d + ' Day'))
+				}
+		}
+		
+		// draw Y axis
+			
+			xContext.moveTo(1, args.chart.height);
+			var unitLength_Y = args.chart.height / 10, _y = args.chart.height;
+			while ( _y >= 0 ) {			
+				xContext.lineTo(1, _y);
+				xContext.lineTo(1 + 5, _y);
+				xContext.moveTo(1, _y);
+				if (_y != 0){
+					axisStr.yl.push(eventTpl(yTpl_left, Math.round(_y*args.y.max/args.chart.height) ));
+				}
+				_y -= unitLength_Y; 
+			}
+
+					
+		
+		xContext.closePath();	
+		xContext.stroke();
+		xContext.restore();
+		
+		//draw Y-right
+		var _y50 = args.yr._y50,
+			_y100 = args.yr._y100; 
+			
+			$('.chart-yraixs-label:eq(2)').height(_y50);
+			$('.chart-yraixs-label:eq(1)').height(_y100);
+			$('.chart-yraixs-label:eq(0)').height(args.chart.height - _y50 - _y100);
+				
+			var yContext = document.getElementById('chart-yr').getContext('2d');	
+			yContext.strokeStyle= '#ccc';
+			yContext.lineWidth=1;
+			//xContext.fillStyle= metroObj.color;
+			
+			yContext.clearRect(0, 0, args.chart.width, args.chart.height);
+			yContext.save();
+			yContext.beginPath();
+			yContext.moveTo(0,args.chart.height-_y50);
+			yContext.lineTo(args.chart.width,args.chart.height-_y50);
+			yContext.moveTo(0,args.chart.height-_y50-_y100);
+			yContext.lineTo(args.chart.width,args.chart.height-_y50-_y100);
+			yContext.moveTo(args.chart.width,0);
+			yContext.lineTo(args.chart.width,args.chart.height);
+			yContext.stroke();
+		
+		return axisStr;
+	},
+	drawEvent : function ( event,chartArgs){ 	
+	
+		var unitLength = {'x':140, 'y': chartArgs.chart.height / 10}; 
+
+		var eTop = chartArgs.chart.height - (event.salesK * chartArgs.chart.height / chartArgs.y.max) - 25,
+			eLeft = (event.days_left-1) * unitLength.x,
+			ePosition = {'left':eLeft, 'top':eTop},
+			eventStr = '', colorStr = '', xAxisStr = ''; 
+		
+		var eventTemplate = '<li id="%s6%" class="event event-%s8%" style="width:%s1%px;top:%s2%px; left:%s3%px"><div class="salesthru"><div class="salesthru-sold" style="width:%s5%"></div><div class="salesthru-label">%s4% <br/> %s7%K - %s9% (%s5%)</div></div></li>',
+			colorTpl = '<li class="color-example color-example-%s1%">%s1%</li>';
+			
+
+		eventStr = eventTpl(eventTemplate, unitLength.x, eTop, eLeft, event.event_name, Math.round(event.value_sell_thru*100)+'%',event.event_cat_id,event.salesK,event.merchant, event.sold_qty);
+		colorStr = eventTpl(colorTpl,event.merchant);
+		
+		var e = {'position':ePosition,'div':eventStr,'color':colorStr}
+		
+		return e;
+		
+	},
+    show : function( content, args ) {
+	  //console.log(content.filename);
+	  var $this = this;
+	  return this.each(function(){
+		if ( content.filename ) {	
+			if ( $('#chart-ylaixs li').length > 0 ){
+				$this.dataVisual('init', content);
+			}
+			$this.dataVisual('getCSVdata',content)
+		}
+	  })
+    },
+	charttools : function( content, args ){
+		function separateY(arr, max, min, yMax,yMin){
+			//var _max = $('#chart').height() * arr.length / eventData.length;
+			$.each(arr,function(i,event){
+				var _y = $('#chart').height() - ( (event.salesK-yMin) * (max-min) / (yMax - yMin)) - min - 25;
+				$('#' + event.event_cat_id).animate({'top':_y},500)
+			});
+		}
+		
+		$('#salesLevel').click(function(e){
+			e.preventDefault();
+			
+			if ( !$(this).hasClass('disabled') ){
+				var _y50 = args.yr._y50,
+					_y100 = args.yr._y100; 
+							
+				separateY(content.eventData_sales.lt50,_y50,0,50,0); 
+				separateY(content.eventData_sales.lt100,_y100 + _y50,_y50,100,50);
+				separateY(content.eventData_sales.gt100,700,_y50 + _y100,250,100);
+				
+				$('#chart-yr, #chart-yraixs').show();
+				$('#original').removeClass('disabled');
+				$(this).addClass('disabled');
+			}
+		});
+		
+		$('#original').click(function(e){
+			e.preventDefault();
+			if ( !$(this).hasClass('disabled') ){
+				$('#chart-yr, #chart-yraixs').hide();
+				$('#salesLevel').removeClass('disabled');
+				$(this).addClass('disabled');
+				
+				$('.event').each(function(i){
+					$(this).animate({'top':content.eventPosition[i].top},500)
+				});
+			}
+			
+		});
+		
+		$('.event').live({'mouseenter':function(){
+				$(this).addClass('event-focus')
+			},
+			'mouseleave':function(){
+				$(this).removeClass('event-focus')
+			}
+		});
+		
+		$('.color-example').live({'click':function(){
+			var _name = $(this).attr('class').match(/color-example-[A-z]+/)[0].replace('color-example-','');
+			if (_name != 'hideall'){
+				$('.event-' + _name).toggleClass('hide');
+				$(this).toggleClass('color-hide');
+			}else{
+				if ( $(this).hasClass('color-hide') ){
+					$('.event').addClass('hide');
+					$('.color-example').addClass('color-hide');
+					$(this).removeClass('color-hide').text('Show All');
+				}else{
+					$('.event').removeClass('hide');
+					$('.color-example').removeClass('color-hide');
+					$(this).addClass('color-hide').text('Hide All');
+				}
+			}
+		}});
+		
+	}
+  };
+
+  $.fn.dataVisual = function( method ) {
+    var eventData = {}, eventPosition = [], eventData_sales = {'lt50' : [], 'lt100' : [], 'gt100' : []};
+	
+	var dafaultData = {
+		'eventData' : {},
+		'eventPosition' : [],
+		'eventData_sales' : {'lt50' : [], 'lt100' : [], 'gt100' : []}
+	}
+	
+    // Method calling logic
+    if ( dataVisualmethods[method] ) {
+	  arguments[1] = $.extend(dafaultData, arguments[1]); 
+      return dataVisualmethods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+    } else if ( typeof method === 'object' || ! method ) {
+	  arguments[0] = $.extend(dafaultData, arguments[0]);  
+      return dataVisualmethods.show.apply( this, arguments );
+    } else {
+      $.error( 'Method ' +  method + ' does not exist on jQuery.dataVisual' );
+    }    
+  
+  };
+
+})( jQuery );	
+
+$(document).ready(function(){  
+	
+
+	$('#GenerateChart').click(function(){
+		//getSeries($('#csvname').val());	
+		$('#data').dataVisual({'filename':$('#csvname').val()});
+	});
+	
+	
+	
+	
+	/*
+	$('#clearOverlap').click(function(e){ 
+		e.preventDefault();
+		//console.log(eventPosition);
+		var eOverlapped = [];
+		$('.event').each(function(i,e){
+			var _height = $(e).height(), 
+				eventPosition_new = eventPosition, sameLeft = [];
+			if ( i<eventPosition.length - 1 && eventPosition[i].left == eventPosition[i+1].left && Math.abs(eventPosition[i].top -  eventPosition[i+1].top) <= $(e).height() ){
+				console.log($(e).text());
+			}
+			for (var j= 0; j<eventPosition.length; j++){
+				var lappedHeight = eventPosition[i].top -  eventPosition_new[j].top;
+				
+				if ( i !=j && eventPosition[i].left == eventPosition_new[j].left ){
+					sameLeft.push(eventPosition_new[j]);
+				}
+				
+				if ( i != j && eventPosition[i].left == eventPosition_new[j].left && Math.abs(lappedHeight) <= _height){
+					
+					if (lappedHeight > 0) {
+						eventPosition_new[i].top = eventPosition_new[i].top - 25;
+						$(e).animate({'top':eventPosition_new[i].top},500)
+						eOverlapped.push($(e).text() + ',' + lappedHeight);
+					}else{
+						eventPosition_new[j].top = eventPosition_new[j].top + 25;
+						$('.event:eq(' + j + ')').animate({'top':eventPosition_new[j].top},500)
+						eOverlapped.push($('.event:eq(' + j + ')').text() + ',' + lappedHeight);
+					}
+					
+					
+					eOverlapped.push($(e).text() + ',' + $('.event:eq(' + j + ')').text());
+				}
+			}
+			
+			if ( sameLeft.length > 1 ){
+				var _same = sameLeft.sort();  console.log(_same);
+				for (var s=_same.length; s>0; s--){
+					
+				}
+			}
+		});
+		console.log(eOverlapped.distinct())
+	});
+	*/
+	
+	
+});  
+-->
+</script>
+
+
+  </body>
+
+ </html>
